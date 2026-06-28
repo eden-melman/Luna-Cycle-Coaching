@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import {
+  classifyWixDataError,
   COLLECTIONS,
   getWixClient,
   insertCmsItem,
@@ -27,48 +28,42 @@ export const POST: APIRoute = async ({ request }) => {
 
   const data = parsed.data;
 
+  let wix;
   try {
-    const wix = await getWixClient();
+    wix = await getWixClient();
+  } catch (err: any) {
+    console.error("getWixClient failed", err);
+    return json(
+      { ok: false, error: `Wix backend is not configured: ${err?.message || err}` },
+      503,
+    );
+  }
 
-    let cmsItemId: string | undefined;
-    try {
-      const inserted = await insertCmsItem(wix, COLLECTIONS.workshopEnquiries, {
-        name: data.name,
-        email: data.email,
-        company: data.company,
-        format: data.format,
-        notes: data.notes ?? "",
-        submittedAt: new Date().toISOString(),
-        status: "new",
-      });
-      cmsItemId = inserted?._id ?? inserted?.dataItem?._id;
-    } catch (err: any) {
-      const msg = String(err?.message || err);
-      console.warn("Workshops CMS insert failed", msg);
-      if (/collection/i.test(msg) || /WDE\d+/i.test(msg)) {
-        return json(
-          {
-            ok: false,
-            error:
-              "The Wix CMS 'WorkshopEnquiries' collection isn't set up yet. See SETUP.md.",
-          },
-          503,
-        );
-      }
-      throw err;
-    }
-
-    const { contactId } = await submitContact(wix, {
+  let cmsItemId: string | undefined;
+  try {
+    const inserted = await insertCmsItem(wix, COLLECTIONS.workshopEnquiries, {
       name: data.name,
       email: data.email,
-      source: "Luna workshops enquiry",
+      company: data.company,
+      format: data.format,
+      notes: data.notes ?? "",
+      submittedAt: new Date().toISOString(),
+      status: "new",
     });
-
-    return json({ ok: true, cmsItemId, contactId });
+    cmsItemId = inserted?._id ?? inserted?.dataItem?._id;
   } catch (err: any) {
-    console.error("Workshop enquiry failed", err);
-    return json({ ok: false, error: "Something went wrong. Please try again." }, 500);
+    console.error("Workshops CMS insert failed", err);
+    const { status, body } = classifyWixDataError(err, COLLECTIONS.workshopEnquiries);
+    return json(body, status);
   }
+
+  const { contactId } = await submitContact(wix, {
+    name: data.name,
+    email: data.email,
+    source: "Luna workshops enquiry",
+  });
+
+  return json({ ok: true, cmsItemId, contactId });
 };
 
 function json(payload: unknown, status = 200) {

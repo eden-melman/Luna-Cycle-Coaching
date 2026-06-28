@@ -3,6 +3,10 @@ import { items } from "@wix/data";
 import { contacts, submittedContact } from "@wix/crm";
 import { services } from "@wix/bookings";
 import { redirects } from "@wix/redirects";
+// `astro:env/client` is the virtual module @wix/astro uses to surface
+// WIX_CLIENT_ID at runtime — on the deployed Wix host it's the only path
+// that resolves (process.env doesn't have it; import.meta.env is empty there).
+import { WIX_CLIENT_ID as ASTRO_WIX_CLIENT_ID } from "astro:env/client";
 
 // IDs for CMS collections we own. These must exist in the Wix dashboard
 // (CMS → Collections) before items will persist. See SETUP.md.
@@ -11,10 +15,7 @@ export const COLLECTIONS = {
   workshopEnquiries: "WorkshopEnquiries",
 } as const;
 
-// IDs for things provisioned in the Wix dashboard. Read from env so they can
-// be set without redeploying. See SETUP.md.
 const env = (key: string): string | undefined => {
-  // Astro server-only env. Works with .env.local + Wix runtime env.
   const fromImport = (import.meta as any).env?.[key];
   if (fromImport) return String(fromImport);
   const fromProcess = typeof process !== "undefined" ? process.env?.[key] : undefined;
@@ -22,7 +23,11 @@ const env = (key: string): string | undefined => {
 };
 
 export const CONFIG = {
-  clientId: env("WIX_CLIENT_ID") || env("PUBLIC_WIX_CLIENT_ID") || "",
+  clientId:
+    (ASTRO_WIX_CLIENT_ID as string | undefined) ||
+    env("WIX_CLIENT_ID") ||
+    env("PUBLIC_WIX_CLIENT_ID") ||
+    "",
   /** Bookings service ID for the free consult. Set via `wix env set --key WIX_CONSULT_SERVICE_ID --value …`. */
   consultServiceId: env("WIX_CONSULT_SERVICE_ID") || "",
 };
@@ -142,15 +147,15 @@ export async function submitContact(
   const last = rest.join(" ");
 
   try {
-    const res = await (client as any).submittedContact.createSubmittedContact({
+    const res = await (client as any).submittedContact.appendOrCreateContact({
       info: {
         name: { first, last: last || undefined },
         emails: { items: [{ email: args.email, tag: "MAIN" }] },
         ...(args.phone ? { phones: { items: [{ phone: args.phone, tag: "MOBILE" }] } } : {}),
       },
-      source: args.source ? { sourceType: "OTHER", appId: undefined } : undefined,
+      ...(args.source ? { passThroughData: args.source } : {}),
     });
-    return { contactId: res?.identityId ?? res?.contactId };
+    return { contactId: res?.contactId ?? res?.identityId };
   } catch (err) {
     // Swallow — contact creation should never block the form submission UX.
     console.warn("submitContact failed", err);
@@ -167,4 +172,56 @@ export async function insertCmsItem(
   payload: Record<string, any>,
 ) {
   return (client as any).items.insert(collectionId, payload);
+}
+
+/**
+ * Classify a Wix data SDK error. The SDK sometimes throws with an empty
+ * `message` and the real code is only in `details.applicationError.code` —
+ * so we check both. Returns a shape suitable for an API response.
+ */
+export function classifyWixDataError(err: any, collectionId: string): {
+  status: number;
+  body: { ok: false; error: string; code?: string };
+} {
+  const appError = err?.details?.applicationError ?? err?.applicationError;
+  const code = appError?.code != null ? String(appError.code) : "";
+  const description = String(appError?.description ?? "");
+  const message = String(err?.message ?? "");
+
+  const haystack = `${code} ${description} ${message}`;
+
+  // Collection missing → WDE0025 (or any WDE-prefixed data error referencing the collection).
+  if (/WDE\d+/i.test(haystack) || /collection/i.test(haystack)) {
+    return {
+      status: 503,
+      body: {
+        ok: false,
+        error:
+          `The Wix CMS '${collectionId}' collection isn't reachable (${code || "unknown"}). See SETUP.md. Your details have not been saved.`,
+        code: code || undefined,
+      },
+    };
+  }
+
+  // Permission denied (visitor token lacks insert permission on the collection).
+  if (code === "403" || /PERMISSION_DENIED|forbidden/i.test(haystack)) {
+    return {
+      status: 503,
+      body: {
+        ok: false,
+        error:
+          `The '${collectionId}' collection rejected the submission for permission reasons. Set its Add permission to 'Anyone' in the Wix dashboard. See SETUP.md.`,
+        code: code || "403",
+      },
+    };
+  }
+
+  return {
+    status: 502,
+    body: {
+      ok: false,
+      error: description || message || "Persistence failed.",
+      code: code || undefined,
+    },
+  };
 }

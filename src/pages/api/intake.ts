@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import {
+  classifyWixDataError,
   COLLECTIONS,
   getWixClient,
   insertCmsItem,
@@ -29,54 +30,44 @@ export const POST: APIRoute = async ({ request }) => {
 
   const data = parsed.data;
 
+  let wix;
   try {
-    const wix = await getWixClient();
+    wix = await getWixClient();
+  } catch (err: any) {
+    console.error("getWixClient failed", err);
+    return json(
+      { ok: false, error: `Wix backend is not configured: ${err?.message || err}` },
+      503,
+    );
+  }
 
-    // 1) Persist to the CMS collection so the coach has a queryable record.
-    let cmsItemId: string | undefined;
-    try {
-      const inserted = await insertCmsItem(wix, COLLECTIONS.intake, {
-        name: data.name,
-        email: data.email,
-        trainingHistory: data.trainingHistory,
-        currentTrainingDays: data.currentTrainingDays,
-        mainGoal: data.mainGoal,
-        cycleTrackingStatus: data.cycleTrackingStatus,
-        injuriesOrNotes: data.injuriesOrNotes ?? "",
-        submittedAt: new Date().toISOString(),
-        status: "new",
-      });
-      cmsItemId = inserted?._id ?? inserted?.dataItem?._id;
-    } catch (err: any) {
-      // If the collection isn't provisioned yet, surface a useful 503 so the user
-      // can complete the SETUP.md steps without losing the submission.
-      const msg = String(err?.message || err);
-      console.warn("CMS insert failed", msg);
-      if (/collection/i.test(msg) || /WDE\d+/i.test(msg)) {
-        return json(
-          {
-            ok: false,
-            error:
-              "The Wix CMS 'Intake' collection isn't set up yet. See SETUP.md and re-deploy. Your details have not been saved.",
-          },
-          503,
-        );
-      }
-      throw err;
-    }
-
-    // 2) Create a Wix Contact so the lead appears in the Wix CRM Contacts list.
-    const { contactId } = await submitContact(wix, {
+  let cmsItemId: string | undefined;
+  try {
+    const inserted = await insertCmsItem(wix, COLLECTIONS.intake, {
       name: data.name,
       email: data.email,
-      source: "Luna intake form",
+      trainingHistory: data.trainingHistory,
+      currentTrainingDays: data.currentTrainingDays,
+      mainGoal: data.mainGoal,
+      cycleTrackingStatus: data.cycleTrackingStatus,
+      injuriesOrNotes: data.injuriesOrNotes ?? "",
+      submittedAt: new Date().toISOString(),
+      status: "new",
     });
-
-    return json({ ok: true, cmsItemId, contactId });
+    cmsItemId = inserted?._id ?? inserted?.dataItem?._id;
   } catch (err: any) {
-    console.error("Intake submission failed", err);
-    return json({ ok: false, error: "Something went wrong. Please try again." }, 500);
+    console.error("Intake CMS insert failed", err);
+    const { status, body } = classifyWixDataError(err, COLLECTIONS.intake);
+    return json(body, status);
   }
+
+  const { contactId } = await submitContact(wix, {
+    name: data.name,
+    email: data.email,
+    source: "Luna intake form",
+  });
+
+  return json({ ok: true, cmsItemId, contactId });
 };
 
 function json(payload: unknown, status = 200) {
