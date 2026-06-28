@@ -80,18 +80,3 @@ npx wix release --comment "what changed"          # uploads bundle and publishes
 ```
 
 The release pipeline runs Astro's server build, the `@wix/cloud-provider-fetch-adapter` rewrites the SSR manifest into a self-contained bundle, and `wix release` uploads it to the Wix runtime backing `lunacyclecoaching.com`.
-
-## Environment variables
-
-Stored in `.env.local` (gitignored), pulled via `npx wix env pull` or set with `npx wix env set --key <K> --value <V>`:
-
-- `WIX_CLIENT_ID` — public OAuth client identifier; set by the Wix scaffold.
-- `WIX_CLIENT_SECRET` — server-side OAuth secret used by the Wix CLI / build tooling. **Never commit.**
-- `WIX_CONSULT_SERVICE_ID` — Bookings service ID for the free consult. If unset, all consult CTAs gracefully fall back to `/intake`.
-
-## Conventions
-
-- Server-rendered Astro for content; React islands only where interaction is needed.
-- All Wix writes go through `src/server/wix.ts` — no direct SDK calls from components.
-- API routes always return a structured JSON response (`{ ok: true }` / `{ ok: false, reason }`) so the client can branch on it.
-- Tailwind utility classes for layout/spacing; design tokens live in `src/styles/global.css`.
