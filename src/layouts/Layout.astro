@@ -1,0 +1,122 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import MobileConsultStickyBar from "../components/MobileConsultStickyBar.jsx";
+
+export interface Props {
+  title: string;
+  description: string;
+  pathname?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  pathname = "/",
+  ogImage,
+  jsonLd,
+} = Astro.props as Props;
+
+const siteName = "Luna Cycle Coaching";
+const siteUrl = "https://luna-cycle-4c4ceffe-edenme5.wix-site-host.com";
+const canonical = `${siteUrl}${pathname}`;
+const fullTitle = pathname === "/" ? `${siteName} — Training plans that work with your cycle` : `${title} — ${siteName}`;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  name: siteName,
+  description:
+    "Cycle-synced strength and conditioning coaching for women in London. Sports-science-backed training plans mapped to the four phases of the menstrual cycle.",
+  url: siteUrl,
+  areaServed: "London, UK",
+  founder: { "@type": "Person", name: "Coach (Sports-Science Strength Coach)" },
+  priceRange: "££",
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "07:00", closes: "19:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "13:00" },
+  ],
+  sameAs: [
+    "https://instagram.com/lunacyclecoaching",
+    "https://instagram.com/trainwithyourcycle",
+  ],
+};
+
+const allJsonLd = jsonLd
+  ? Array.isArray(jsonLd) ? [businessSchema, ...jsonLd] : [businessSchema, jsonLd]
+  : [businessSchema];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteName} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Public+Sans:wght@300;400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Public+Sans:wght@300;400;500;600&display=swap"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {allJsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-[var(--color-on-dark)]">Skip to content</a>
+    <Nav pathname={pathname} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileConsultStickyBar client:load />
+
+    <script is:inline>
+      // Scroll reveal — IntersectionObserver, no scroll listener
+      (function () {
+        if (typeof window === "undefined") return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) {
+          document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const description =
+  "Sports-science degree. Strength-coaching certification. A coaching practice built on the studies that actually included women, and a flat refusal to call anything a girl workout.";
+
+const story = {
+  heading: "Luna Cycle Coaching started in a London gym.",
+  paragraphs: [
+    "Luna Cycle Coaching started in a London gym where I kept watching strong women apologise for an off week. I have a sports-science degree and a strength-coaching certification, and none of my textbooks were built on female physiology — almost all of the foundational training research used male subjects.",
+    "So I went and read the studies that did include women, and the pattern was obvious: the menstrual cycle changes how you adapt, recover, and feel under load, and ignoring it is just bad coaching.",
+    "I started mapping programmes to cycle phases for a handful of clients. They stopped dreading their luteal week and started trusting their bodies again. Five years later I coach women across the city and run corporate workshops booked through spring.",
+    "I will never call anything a girl workout. It is just good training, finally written for the body doing it.",
+  ],
+};
+
+const credentials = [
+  {
+    n: "01",
+    name: "BSc (Hons) Sports & Exercise Science",
+    detail: "University of Birmingham — focus on female endocrine response to resistance training.",
+  },
+  {
+    n: "02",
+    name: "Certified Strength & Conditioning Specialist",
+    detail: "NSCA CSCS — current registration, continuing-education focus on women's strength training.",
+  },
+  {
+    n: "03",
+    name: "Female Athlete Health continuing education",
+    detail: "The Well HQ (Bruinvels, Sims): female athlete physiology, RED-S, hormonal contraception in sport.",
+  },
+  {
+    n: "04",
+    name: "British Powerlifting coaching pathway",
+    detail: "Level 1 coach. Active in the London powerlifting community since 2019.",
+  },
+  {
+    n: "05",
+    name: "Mental Health First Aid",
+    detail: "MHFA England — for coaching relationships that hold up when training and life collide.",
+  },
+];
+
+const principles = [
+  { t: "Evidence over opinion", b: "Every recommendation in your programme has a citation behind it. Where the evidence is thin, you'll be told." },
+  { t: "Programming over content", b: "I don't run a paid social-media account. The work is the work — written plans, written feedback, video reviews." },
+  { t: "Your data stays between us", b: "No client transformations, no DMs screenshotted for engagement, no your-results-might-vary disclaimers." },
+  { t: "The body is not the enemy", b: "We map to your physiology — including the weeks it asks for less — instead of punishing it for changing." },
+];
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Coach, Luna Cycle Coaching",
+  jobTitle: "Strength & Conditioning Coach",
+  worksFor: { "@type": "Organization", name: "Luna Cycle Coaching" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of Birmingham" },
+  hasCredential: credentials.map((c) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: c.name,
+  })),
+  knowsAbout: [
+    "Strength and conditioning",
+    "Female athlete physiology",
+    "Menstrual cycle and exercise adaptation",
+    "Powerlifting",
+  ],
+  address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+};
+---
+
+<Layout title="Your Coach" description={description} pathname="/coach" jsonLd={personJsonLd}>
+  <section class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pt-16 md:pt-24 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+      <div class="md:col-span-8">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">Your coach</div>
+        <h1 class="text-display max-w-[20ch]">Sports science. Strength coaching. A flat refusal to call anything a girl workout.</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start" data-reveal>
+      <div class="md:col-span-5">
+        <div class="aspect-[4/5] w-full overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface-2)] relative">
+          <svg viewBox="0 0 400 500" class="w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="coachBg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3A1D36" />
+                <stop offset="100%" stop-color="#2A1226" />
+              </linearGradient>
+              <radialGradient id="coachLight" cx="0.7" cy="0.2" r="0.7">
+                <stop offset="0%" stop-color="#F4A261" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#F4A261" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#coachBg)" />
+            <rect width="400" height="500" fill="url(#coachLight)" />
+
+            <!-- Editorial number block -->
+            <text x="40" y="90" fill="#F4A261" font-family="Playfair Display, serif" font-size="60" opacity="0.4">05</text>
+            <text x="40" y="120" fill="#FBF7F4" font-family="Public Sans, sans-serif" font-size="11" letter-spacing="3" opacity="0.6">YEARS COACHING</text>
+
+            <!-- Abstract figure / barbell silhouette -->
+            <g transform="translate(200,280)">
+              <circle cx="0" cy="-60" r="32" fill="#FBF7F4" opacity="0.85" />
+              <rect x="-22" y="-30" width="44" height="90" fill="#FBF7F4" opacity="0.85" />
+              <!-- Barbell -->
+              <rect x="-120" y="70" width="240" height="6" fill="#F4A261" />
+              <rect x="-130" y="62" width="14" height="22" fill="#FBF7F4" />
+              <rect x="116" y="62" width="14" height="22" fill="#FBF7F4" />
+              <rect x="-150" y="58" width="14" height="30" fill="#FBF7F4" opacity="0.8" />
+              <rect x="136" y="58" width="14" height="30" fill="#FBF7F4" opacity="0.8" />
+            </g>
+
+            <text x="40" y="440" fill="#FBF7F4" font-family="Public Sans, sans-serif" font-size="11" letter-spacing="3" opacity="0.5">DOCUMENTARY ARCHIVE</text>
+            <text x="40" y="460" fill="#FBF7F4" font-family="Playfair Display, serif" font-style="italic" font-size="20" opacity="0.9">Strong women, written for.</text>
+          </svg>
+        </div>
+        <div class="mt-3 text-eyebrow text-[var(--color-text-muted)] text-right">Studio · London · 05.24</div>
+      </div>
+
+      <div class="md:col-span-6 md:col-start-7">
+        <div class="border-t-2 border-[var(--color-primary)] pt-8">
+          <div class="text-eyebrow text-[var(--color-accent)] mb-4">The genesis</div>
+          <h2 class="text-display-sm font-[family-name:var(--font-display)] italic text-[var(--color-primary)] mb-6">
+            "{story.heading}"
+          </h2>
+          <div class="space-y-5 text-body-lg text-[var(--color-text)]">
+            {story.paragraphs.slice(1, -1).map((p) => <p>{p}</p>)}
+            <p class="font-semibold text-[var(--color-primary)]">{story.paragraphs[story.paragraphs.length - 1]}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-surface-2)]/50 border-y border-[var(--color-border)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24 grid grid-cols-1 md:grid-cols-12 gap-12" data-reveal>
+      <div class="md:col-span-4">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">Credentials</div>
+        <h2 class="text-display-sm">Coaching is a clinical practice, not an opinion.</h2>
+        <p class="mt-6 text-[var(--color-text-muted)]">My training is grounded in validated academic research and field-tested protocols. The certifications below are current and verifiable on request.</p>
+      </div>
+      <ul class="md:col-span-7 md:col-start-6 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+        {credentials.map((c) => (
+          <li class="py-6 flex gap-6 items-start">
+            <span class="text-stats text-[var(--color-primary)] opacity-30 leading-none">{c.n}</span>
+            <div class="flex-1">
+              <h3 class="font-semibold text-[var(--color-primary)] text-lg">{c.name}</h3>
+              <p class="mt-2 text-[var(--color-text-muted)]">{c.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24" data-reveal>
+      <div class="text-eyebrow text-[var(--color-accent)] mb-4">Operating principles</div>
+      <h2 class="text-display-sm mb-12 max-w-[24ch]">Four rules the practice runs on.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--color-border)] border border-[var(--color-border)]">
+        {principles.map((p, i) => (
+          <div class="bg-[var(--color-surface)] p-8 md:p-10">
+            <div class="text-stats text-[var(--color-primary)] opacity-20">0{i + 1}</div>
+            <h3 class="mt-4 text-2xl font-[family-name:var(--font-display)] font-semibold text-[var(--color-primary)]">{p.t}</h3>
+            <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">{p.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-primary)] text-[var(--color-on-dark)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24 text-center" data-reveal>
+      <h2 class="text-display-sm text-[var(--color-on-dark)] max-w-[24ch] mx-auto">Ready to talk training?</h2>
+      <p class="mt-6 max-w-xl mx-auto opacity-85 text-body-lg">
+        Free 30-minute consult. Bring your training history and your questions. I'll have read your intake first.
+      </p>
+      <a href="/intake" class="btn-primary mt-10 bg-[var(--color-on-dark)] text-[var(--color-primary)] border-[var(--color-on-dark)] hover:bg-[var(--color-accent-bright)] hover:border-[var(--color-accent-bright)] hover:text-[var(--color-dark)]">
+        Book a free consult →
+      </a>
+    </div>
+  </section>
+</Layout>

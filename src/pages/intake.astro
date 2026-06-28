@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IntakeForm from "../components/IntakeForm.jsx";
+
+const description =
+  "Start your coaching intake — share your training history and where you are in your cycle, and I'll come to the free consult prepared with a starting point.";
+---
+
+<Layout title="Start your intake" description={description} pathname="/intake">
+  <section class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pt-16 md:pt-24 pb-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+    <div class="md:col-span-8">
+      <div class="text-eyebrow text-[var(--color-accent)] mb-4">Start your intake</div>
+      <h1 class="text-display max-w-[20ch]">Tell me where you've been. I'll meet you where you are.</h1>
+      <p class="mt-8 text-body-lg max-w-2xl text-[var(--color-text-muted)]">
+        The intake form below is the first step of the coaching relationship. It takes about five minutes. I'll read it carefully before we talk and reply within one working day to schedule the free 30-minute consult.
+      </p>
+    </div>
+    <div class="md:col-span-4">
+      <div class="border-t-2 border-[var(--color-primary)] pt-6">
+        <div class="text-eyebrow text-[var(--color-text-muted)] mb-3">What happens next</div>
+        <ol class="space-y-3 text-sm text-[var(--color-text)]">
+          <li><span class="text-eyebrow text-[var(--color-accent)] mr-2">01</span> You submit the intake</li>
+          <li><span class="text-eyebrow text-[var(--color-accent)] mr-2">02</span> I read your training history</li>
+          <li><span class="text-eyebrow text-[var(--color-accent)] mr-2">03</span> Booking link by email within one working day</li>
+          <li><span class="text-eyebrow text-[var(--color-accent)] mr-2">04</span> Free 30-minute consult — no obligation</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pb-32">
+    <IntakeForm client:idle />
+  </section>
+</Layout>

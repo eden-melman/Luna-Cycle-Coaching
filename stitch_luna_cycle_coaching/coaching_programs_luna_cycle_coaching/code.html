@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coaching Programs | Luna Cycle Coaching</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e5e2df",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ebb7df",
+                      "tertiary-fixed": "#ffd7f4",
+                      "outline": "#80747b",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#fdf9f6",
+                      "tertiary-container": "#462842",
+                      "on-background": "#1c1b1a",
+                      "primary-fixed": "#ffd7f4",
+                      "primary-container": "#4a2545",
+                      "on-error-container": "#93000a",
+                      "secondary": "#9d4400",
+                      "secondary-fixed-dim": "#ffb68f",
+                      "on-surface": "#1c1b1a",
+                      "tertiary": "#2f132c",
+                      "on-surface-variant": "#4e444b",
+                      "secondary-fixed": "#ffdbca",
+                      "on-tertiary-container": "#b68ead",
+                      "surface-variant": "#e5e2df",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#e5bada",
+                      "on-secondary-fixed": "#331100",
+                      "surface-tint": "#7b5073",
+                      "surface-container-high": "#ebe7e5",
+                      "surface-container": "#f1edea",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#fdf9f6",
+                      "outline-variant": "#d1c3cb",
+                      "inverse-surface": "#31302f",
+                      "surface-container-low": "#f7f3f0",
+                      "surface": "#fdf9f6",
+                      "on-secondary-container": "#692b00",
+                      "on-primary-fixed-variant": "#61395b",
+                      "on-primary-container": "#bc8bb1",
+                      "surface-dim": "#ddd9d6",
+                      "primary": "#32102f",
+                      "on-tertiary-fixed": "#2d112a",
+                      "inverse-primary": "#ebb7df",
+                      "inverse-on-surface": "#f4f0ed",
+                      "on-primary-fixed": "#300e2d",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#ff8841",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5d3c57",
+                      "on-secondary-fixed-variant": "#773200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "unit": "4px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Playfair Display"],
+                      "headline-lg": ["Playfair Display"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "body-lg": ["Public Sans"],
+                      "display-lg": ["Playfair Display"],
+                      "label-caps": ["Public Sans"],
+                      "stats-lg": ["Public Sans"],
+                      "body-md": ["Public Sans"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "stats-lg": ["48px", {"lineHeight": "1", "letterSpacing": "-0.03em", "fontWeight": "300"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FBF7F4; /* Base paper-like texture */
+            color: #1c1b1a;
+        }
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .hard-edge-stack {
+            border: 1px solid #E4D7DF;
+            position: relative;
+        }
+        .hard-edge-stack::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: -4px;
+            bottom: -4px;
+            border: 1px solid #E4D7DF;
+            z-index: -1;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Shell -->
+<nav class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto sticky top-0 z-50">
+<div class="text-headline-md font-headline-md text-primary tracking-tight">Luna Cycle Coaching</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 text-label-caps font-label-caps" href="#">Programs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-caps font-label-caps" href="#">Science</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-caps font-label-caps" href="#">Coach</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-label-caps font-label-caps" href="#">Workshops</a>
+<button class="bg-primary text-on-primary px-6 py-2 text-label-caps font-label-caps hover:bg-secondary transition-colors duration-300">Book a free consult</button>
+</div>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<!-- Hero Section -->
+<header class="mb-24 md:grid md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-8">
+<span class="text-label-caps font-label-caps text-secondary mb-4 block">PERFORMANCE ARCHITECTURE</span>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg mb-8 text-primary leading-tight">
+                    Programs built for the body <span class="italic text-secondary">doing</span> them.
+                </h1>
+<p class="text-body-lg font-body-lg max-w-2xl text-on-surface-variant">
+                    We don't believe in generic training blocks. Every program we design is architected around your biological data, hormonal rhythms, and the specific physiological demands of female cycling.
+                </p>
+</div>
+<div class="hidden md:block md:col-span-4 text-right">
+<div class="inline-block p-4 border border-outline-variant bg-surface-container-low">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">monitoring</span>
+<p class="text-label-caps font-label-caps text-primary opacity-60">PHASE-MAPPED<br/>DATA-DRIVEN</p>
+</div>
+</div>
+</header>
+<!-- Programs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
+<!-- Tier 1: Phase Map -->
+<section class="bg-white border border-outline-variant p-8 flex flex-col h-full hover:border-secondary transition-colors group">
+<div class="mb-8">
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-2">TIER 01</h3>
+<h2 class="text-headline-lg font-headline-lg text-primary">Phase Map</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-stats-lg font-stats-lg text-primary">£45</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">one-off</span>
+</div>
+</div>
+<div class="mb-12 border-t border-outline-variant pt-8">
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 italic">The essential architectural blueprint for self-guided riders.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">28-Day Template Guide</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Hormonal Phase Integration</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">One Professional Review</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant">
+<div class="mb-6">
+<p class="text-label-caps font-label-caps text-primary mb-4">WHAT'S INSIDE</p>
+<div class="h-12 w-full bg-surface-container-low flex items-center px-1 overflow-hidden">
+<div class="h-2 w-1/4 bg-primary mx-0.5" title="Follicular: High Intensity"></div>
+<div class="h-2 w-1/4 bg-primary mx-0.5 opacity-40" title="Ovulation: Strength Focus"></div>
+<div class="h-2 w-1/4 bg-primary mx-0.5 opacity-20" title="Luteal: Endurance Base"></div>
+<div class="h-2 w-1/4 bg-outline-variant mx-0.5" title="Menstrual: Rest/Recovery"></div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">Standardized 28-day timeline</p>
+</div>
+<button class="w-full border border-primary text-primary py-3 text-label-caps font-label-caps hover:bg-primary hover:text-on-primary transition-all">Get the blueprint</button>
+</div>
+</section>
+<!-- Tier 2: The Athlete -->
+<section class="bg-white border-2 border-primary p-8 flex flex-col h-full relative shadow-[8px_8px_0px_0px_#32102f] -translate-y-2">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1 text-label-caps font-label-caps">MOST POPULAR</div>
+<div class="mb-8">
+<h3 class="text-label-caps font-label-caps text-secondary mb-2">TIER 02</h3>
+<h2 class="text-headline-lg font-headline-lg text-primary">The Athlete</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-stats-lg font-stats-lg text-primary">£95</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">/month</span>
+</div>
+</div>
+<div class="mb-12 border-t border-outline-variant pt-8">
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 italic">Dynamic coaching for the committed amateur looking for precision.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Monthly dynamic program updates</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Monthly 1:1 data check-in</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Monthly form/technique review</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Custom Nutritional Windowing</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant">
+<div class="mb-6">
+<p class="text-label-caps font-label-caps text-primary mb-4">WHAT'S INSIDE</p>
+<div class="h-12 w-full bg-surface-container-low flex items-center px-1">
+<div class="h-6 w-1/4 bg-primary mx-0.5"></div>
+<div class="h-4 w-1/4 bg-primary mx-0.5 opacity-60"></div>
+<div class="h-3 w-1/4 bg-primary mx-0.5 opacity-40"></div>
+<div class="h-1 w-1/4 bg-secondary mx-0.5"></div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">Personalized metabolic blocks</p>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 text-label-caps font-label-caps hover:bg-secondary transition-all">Select Athlete tier</button>
+</div>
+</section>
+<!-- Tier 3: Fully Coached -->
+<section class="bg-white border border-outline-variant p-8 flex flex-col h-full hover:border-secondary transition-colors">
+<div class="mb-8">
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-2">TIER 03</h3>
+<h2 class="text-headline-lg font-headline-lg text-primary">Fully Coached</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="text-stats-lg font-stats-lg text-primary">£160</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">/month</span>
+</div>
+</div>
+<div class="mb-12 border-t border-outline-variant pt-8">
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 italic">High-performance editorial coaching for elite results and constant adjustment.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Weekly program adjustments</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Weekly 30m Video Check-in</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Unlimited Private Messaging</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span class="text-body-md font-body-md">Power Profile Analysis (W/kg)</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant">
+<div class="mb-6">
+<p class="text-label-caps font-label-caps text-primary mb-4">WHAT'S INSIDE</p>
+<div class="h-12 w-full bg-surface-container-low flex items-end px-1 gap-1">
+<div class="h-1/2 w-2 bg-primary"></div>
+<div class="h-2/3 w-2 bg-primary opacity-90"></div>
+<div class="h-1/3 w-2 bg-primary opacity-80"></div>
+<div class="h-full w-2 bg-secondary"></div>
+<div class="h-1/2 w-2 bg-primary"></div>
+<div class="h-3/4 w-2 bg-primary"></div>
+<div class="h-1/4 w-2 bg-outline-variant"></div>
+<div class="h-full w-2 bg-secondary"></div>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">Continuous data-stream sync</p>
+</div>
+<button class="w-full border border-primary text-primary py-3 text-label-caps font-label-caps hover:bg-primary hover:text-on-primary transition-all">Apply for coaching</button>
+</div>
+</section>
+</div>
+<!-- Call to Action Section -->
+<section class="asymmetric-grid mb-32 items-center">
+<div class="col-span-12 md:col-span-7">
+<div class="relative w-full aspect-[4/3] bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale brightness-90" data-alt="A cinematic, documentary-style photograph of a female cyclist in a professional laboratory setting. She is focused on a technical display showing power curves and biometric data. The lighting is low-key with warm amber highlights and deep plum shadows, emphasizing an elite, scientific, yet human-centric coaching environment. The aesthetic is high-end editorial sports science." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWyHtLMqICF9zcymN8O6mPYVWrRYLOGSIGMfH4_yWP6gFECeIh2ZaFQHwSgBJE1gsoCYH-Xaja1cNZf2PqCy6aRogffXrZiZPZgcJ7vH6HiLHjZjWi768tC7PztjGRc_SfPEqfDRfXpwbqQZg6SE1635fCkLhD0YHcxp-FNQzBUeKQBmhbppTQX4qHynMPH1NgrkfGiYqmwTxE6jHoJHN5h0HT7PBv-cBURGIQzgtrQ4h5ySbRDK4gAbWFLv9_EZi47kN9Gvep9Ks"/>
+<div class="absolute inset-0 bg-primary mix-blend-multiply opacity-10"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-start-9 md:col-span-4 py-12 md:py-0">
+<h2 class="text-headline-lg font-headline-lg text-primary mb-6">Not sure which path aligns with your season?</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-10">
+                    We offer a complimentary 20-minute consultation to review your current training load, menstrual cycle data, and competitive goals. Let's find the architecture that fits.
+                </p>
+<a class="inline-block px-10 py-4 bg-primary text-on-primary text-label-caps font-label-caps hover:bg-secondary transition-all shadow-[4px_4px_0px_0px_#9d4400]" href="#">Book a free consult</a>
+</div>
+</section>
+<!-- Technical Comparison Ledger -->
+<section class="border-t border-primary pt-24 mb-32">
+<h2 class="text-label-caps font-label-caps text-secondary mb-12">TECHNICAL COMPARISON LEDGER</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="py-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Scientific Feature</th>
+<th class="py-6 font-label-caps text-label-caps text-primary uppercase tracking-widest">Phase Map</th>
+<th class="py-6 font-label-caps text-label-caps text-primary uppercase tracking-widest">The Athlete</th>
+<th class="py-6 font-label-caps text-label-caps text-primary uppercase tracking-widest">Fully Coached</th>
+</tr>
+</thead>
+<tbody class="text-body-md font-body-md">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-4">Menstrual Syncing</td>
+<td class="py-4">Static Guide</td>
+<td class="py-4 font-semibold">Active Sync</td>
+<td class="py-4 font-semibold">Daily Variable Sync</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-4">Power Profile Analysis</td>
+<td class="py-4">—</td>
+<td class="py-4">Monthly</td>
+<td class="py-4 font-semibold">Bi-Weekly</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-4">Form / Video Review</td>
+<td class="py-4">—</td>
+<td class="py-4">1x Per Month</td>
+<td class="py-4 font-semibold">Unlimited</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-4">Bloodwork Integration</td>
+<td class="py-4">—</td>
+<td class="py-4">Optional</td>
+<td class="py-4 font-semibold text-secondary">Included</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-tertiary border-t border-outline-variant dark:border-outline">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim mb-4">Luna Cycle Coaching</div>
+<p class="text-body-md font-body-md text-on-surface-variant dark:text-on-tertiary-container">© 2024 Luna Cycle Coaching.<br/>Editorial Sports-Science for Women.</p>
+</div>
+<div class="col-span-1">
+<h4 class="text-label-caps font-label-caps text-primary dark:text-tertiary-fixed mb-6">Programs</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Phase Map</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">The Athlete</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Fully Coached</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-label-caps font-label-caps text-primary dark:text-tertiary-fixed mb-6">Explore</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Science</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Coach</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Workshops</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-label-caps font-label-caps text-primary dark:text-tertiary-fixed mb-6">Legal</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Credentials</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors text-body-md" href="#">Sitemap</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

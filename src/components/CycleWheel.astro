@@ -1,0 +1,119 @@
+---
+export interface Props {
+  size?: number;
+  /** When true, applies the on-load draw animation */
+  animate?: boolean;
+  /** Show external phase labels */
+  showLabels?: boolean;
+  /** Show large center text "Luna Cycle" */
+  showCenter?: boolean;
+  /** Optional aria-label */
+  label?: string;
+}
+const {
+  size = 480,
+  animate = false,
+  showLabels = true,
+  showCenter = true,
+  label = "Four-phase menstrual cycle wheel",
+} = Astro.props as Props;
+
+// Geometry — wheel is rendered in a 100x100 viewbox.
+// Each phase covers 90° but inside the SVG we render slightly inset arcs as stroked paths so they read as four arcs over a faint base ring.
+const r = 42;          // arc radius
+const sw = 9;          // stroke width
+const cx = 50;
+const cy = 50;
+
+// Quadrant arcs (clockwise, starting at top). We tilt by -45° so each arc sits in its quadrant rather than across an axis.
+type Arc = { id: string; from: number; to: number; color: string; name: string; cls: string };
+const arcs: Arc[] = [
+  { id: "menstrual",  from: -45,  to: 45,  color: "#6E2A60", name: "Menstrual",  cls: "arc-1" },
+  { id: "follicular", from: 45,   to: 135, color: "#4A2545", name: "Follicular", cls: "arc-2" },
+  { id: "ovulatory",  from: 135,  to: 225, color: "#C25A12", name: "Ovulatory",  cls: "arc-3" },
+  { id: "luteal",     from: 225,  to: 315, color: "#8E4267", name: "Luteal",     cls: "arc-4" },
+];
+
+const toRad = (deg: number) => (deg * Math.PI) / 180;
+const pointOnCircle = (deg: number) => {
+  // 0° at top, clockwise
+  const rad = toRad(deg - 90);
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+};
+const arcPath = (from: number, to: number) => {
+  const start = pointOnCircle(from);
+  const end = pointOnCircle(to);
+  const largeArc = Math.abs(to - from) > 180 ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+};
+// length of an arc in the same coordinate units (used to set stroke-dasharray for draw-on)
+const arcLen = (deg: number) => (deg / 360) * 2 * Math.PI * r;
+---
+
+<div
+  class="relative w-full aspect-square"
+  style={`max-width: ${size}px;`}
+  data-anim={animate ? "hero-wheel" : undefined}
+>
+  <svg
+    viewBox="0 0 100 100"
+    role="img"
+    aria-label={label}
+    class="w-full h-full"
+  >
+    {/* Faint base ring */}
+    <circle cx={cx} cy={cy} r={r} fill="none" stroke="#E4D7DF" stroke-width={sw} opacity="0.45" />
+
+    {/* Inner soft ring for editorial structure */}
+    <circle cx={cx} cy={cy} r={r - sw - 3} fill="none" stroke="#E4D7DF" stroke-width="0.4" />
+
+    {arcs.map((a) => (
+      <path
+        d={arcPath(a.from, a.to)}
+        fill="none"
+        stroke={a.color}
+        stroke-width={sw}
+        stroke-linecap="butt"
+        class={`arc ${a.cls}`}
+        style={`--arc-len:${arcLen(Math.abs(a.to - a.from)).toFixed(4)}`}
+      >
+        <title>{a.name}</title>
+      </path>
+    ))}
+
+    {/* Phase tick marks at boundaries */}
+    {arcs.map((a) => {
+      const p = pointOnCircle(a.from);
+      const outer = (() => {
+        const rad = toRad(a.from - 90);
+        return { x: cx + (r + sw / 2 + 1.5) * Math.cos(rad), y: cy + (r + sw / 2 + 1.5) * Math.sin(rad) };
+      })();
+      return <line x1={p.x} y1={p.y} x2={outer.x} y2={outer.y} stroke="#2A1226" stroke-width="0.4" opacity="0.6" />;
+    })}
+  </svg>
+
+  {showCenter && (
+    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+      <span class="text-eyebrow text-[var(--color-text-muted)]">The Luna</span>
+      <span class="font-[family-name:var(--font-display)] text-[var(--color-primary)] text-2xl md:text-3xl font-semibold tracking-tight">CYCLE</span>
+      <span class="mt-2 text-[10px] tracking-[0.18em] uppercase text-[var(--color-text-muted)]">4 Phases · 1 Body</span>
+    </div>
+  )}
+
+  {showLabels && (
+    <>
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.18em] uppercase font-semibold whitespace-nowrap" style="color:#6E2A60">
+        Menstrual · Recovery
+      </div>
+      <div class="absolute top-1/2 -translate-y-1/2 -right-2 md:-right-4 origin-center rotate-90 text-[10px] tracking-[0.18em] uppercase font-semibold whitespace-nowrap text-[var(--color-primary)]">
+        Follicular · Build
+      </div>
+      <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.18em] uppercase font-semibold whitespace-nowrap text-[var(--color-accent)]">
+        Ovulatory · Peak
+      </div>
+      <div class="absolute top-1/2 -translate-y-1/2 -left-2 md:-left-4 origin-center -rotate-90 text-[10px] tracking-[0.18em] uppercase font-semibold whitespace-nowrap" style="color:#8E4267">
+        Luteal · Sustain
+      </div>
+    </>
+  )}
+</div>

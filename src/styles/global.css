@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FBF7F4;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F4ECEC;
+  --color-text: #3A1D36;
+  --color-text-muted: #6E5468;
+  --color-border: #E4D7DF;
+  --color-primary: #4A2545;
+  --color-primary-deep: #2A1226;
+  --color-accent: #C25A12;
+  --color-accent-bright: #F4A261;
+  --color-dark: #2A1226;
+  --color-on-dark: #FBF7F4;
+
+  --font-display: "GT Sectra", "Playfair Display", "Times New Roman", serif;
+  --font-body: "Public Sans", "Inter", system-ui, sans-serif;
+
+  --container-narrow: 64rem;
+  --container-max: 80rem;
+
+  --tracking-caps: 0.12em;
+}
+
+@layer base {
+  html {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-background);
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-on-dark);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  button {
+    font-family: var(--font-body);
+  }
+
+  /* Hide default focus rings only where focus-visible already provides them */
+  button:focus:not(:focus-visible),
+  a:focus:not(:focus-visible),
+  input:focus:not(:focus-visible),
+  textarea:focus:not(:focus-visible),
+  select:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@utility text-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+@utility text-display-sm {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+@utility text-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@utility text-caps {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@utility text-body-lg {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+@utility text-stats {
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility rule-h {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Hero wheel arc draw-on; respects prefers-reduced-motion */
+@keyframes wheel-draw {
+  from { stroke-dashoffset: var(--arc-len); }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+[data-anim="hero-wheel"] .arc {
+  stroke-dasharray: var(--arc-len);
+  stroke-dashoffset: var(--arc-len);
+  animation: wheel-draw 700ms ease-out forwards;
+}
+[data-anim="hero-wheel"] .arc-1 { animation-delay: 0ms; }
+[data-anim="hero-wheel"] .arc-2 { animation-delay: 150ms; }
+[data-anim="hero-wheel"] .arc-3 { animation-delay: 300ms; }
+[data-anim="hero-wheel"] .arc-4 { animation-delay: 450ms; }
+
+[data-anim="hero-word"] {
+  display: inline-block;
+  opacity: 0;
+  animation: word-rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+[data-anim="hero-cta"] {
+  opacity: 0;
+  animation: fade-in 500ms ease-out 900ms forwards;
+}
+
+/* Scroll reveal — applied via IntersectionObserver below the fold */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim="hero-wheel"] .arc {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  [data-anim="hero-word"],
+  [data-anim="hero-cta"] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Component utility classes */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  background: var(--color-primary);
+  color: var(--color-on-dark);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, transform 80ms ease;
+}
+.btn-primary:hover { background: var(--color-primary-deep); }
+.btn-primary:active { transform: scale(0.985); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  background: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, transform 80ms ease;
+}
+.btn-secondary:hover { background: var(--color-primary); color: var(--color-on-dark); }
+.btn-secondary:active { transform: scale(0.985); }
+
+/* Field styles for the intake form — bottom-border ledger style */
+.field-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+  padding: 0.6rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+.field-input:focus {
+  border-color: var(--color-accent);
+}
+.field-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+textarea.field-input {
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  min-height: 7rem;
+  resize: vertical;
+}
+textarea.field-input:focus {
+  border-color: var(--color-accent);
+}
+
+select.field-input {
+  border: 1px solid var(--color-border);
+  padding: 0.7rem 0.75rem;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-primary) 50%), linear-gradient(135deg, var(--color-primary) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* Phase color tokens — used by the wheel + science page */
+.phase-menstrual { color: #6E2A60; }
+.phase-follicular { color: #4A2545; }
+.phase-ovulatory  { color: #C25A12; }
+.phase-luteal     { color: #8E4267; }

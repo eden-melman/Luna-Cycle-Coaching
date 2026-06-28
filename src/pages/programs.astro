@@ -1,0 +1,223 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const description =
+  "Three coaching programmes mapped to the four phases of your cycle — Phase Map (£45 one-off), Phase Coached (£95/mo), and Fully Coached (£160/mo).";
+
+const programs = [
+  {
+    tier: "01",
+    name: "Phase Map",
+    price: "£45",
+    billing: "one-off",
+    blurb: "A four-phase training template built from your intake, a cycle-tracking guide, and one written plan review.",
+    includes: [
+      "Personalised four-phase training template (PDF)",
+      "Cycle-tracking guide and starter spreadsheet",
+      "One written plan review within two weeks",
+      "Reading list of the studies behind the recommendations",
+    ],
+    bestFor: "Self-motivated lifters who want the framework without weekly coaching.",
+    note: "Best paired with a recent training history. Not refreshed monthly.",
+  },
+  {
+    tier: "02",
+    name: "Phase Coached",
+    price: "£95",
+    billing: "per month",
+    blurb: "Phase-mapped programming refreshed monthly, two written check-ins per cycle, message support during business hours, and one form-review video per phase.",
+    includes: [
+      "Programming written cycle-by-cycle, mapped to your phases",
+      "Two written check-ins per cycle (you log, I respond)",
+      "Up to four 60-second form videos reviewed per month",
+      "Message support, Mon–Fri",
+      "Quarterly progression review with strength and conditioning targets",
+    ],
+    bestFor: "Lifters training three to four times a week who want a coach in the loop without daily contact.",
+    note: "One-month minimum. Cancel any time after.",
+    featured: true,
+  },
+  {
+    tier: "03",
+    name: "Fully Coached",
+    price: "£160",
+    billing: "per month",
+    blurb: "Phase-mapped programming updated every cycle, weekly check-ins, form review by video, and unlimited message support.",
+    includes: [
+      "Programming updated every cycle, sometimes mid-cycle",
+      "Weekly written check-in and short Loom from me",
+      "Unlimited 60-second form videos with feedback",
+      "Unlimited message support, Mon–Fri",
+      "Quarterly in-person session in London or 1:1 video call",
+      "Race / meet / event peaking plans built in",
+    ],
+    bestFor: "Anyone training four-plus times a week who wants the plan to adapt as their cycle does.",
+    note: "Three-month minimum to allow for a full programming cycle.",
+  },
+];
+
+const comparison = [
+  ["Phase-mapped programming", "Template", "Refreshed monthly", "Updated every cycle"],
+  ["Check-ins", "One review", "Two per cycle", "Weekly"],
+  ["Form-review videos", "—", "4 per month", "Unlimited"],
+  ["Message support", "—", "Mon–Fri", "Mon–Fri, unlimited"],
+  ["In-person / 1:1 calls", "—", "—", "Quarterly"],
+  ["Programming for races / meets", "—", "Add-on", "Included"],
+  ["Minimum commitment", "One-off", "1 month", "3 months"],
+];
+
+const serviceJsonLd = programs.map((p) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Strength and conditioning coaching",
+  name: p.name,
+  description: p.blurb,
+  provider: { "@type": "HealthAndBeautyBusiness", name: "Luna Cycle Coaching" },
+  offers: {
+    "@type": "Offer",
+    price: p.price.replace("£", ""),
+    priceCurrency: "GBP",
+    availability: "https://schema.org/InStock",
+    url: "https://luna-cycle-4c4ceffe-edenme5.wix-site-host.com/programs",
+  },
+}));
+---
+
+<Layout title="Coaching Programs" description={description} pathname="/programs" jsonLd={serviceJsonLd}>
+  <section class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pt-16 md:pt-24 pb-16 grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+    <div class="md:col-span-8">
+      <div class="text-eyebrow text-[var(--color-accent)] mb-4">Coaching</div>
+      <h1 class="text-display max-w-[20ch]">Programmes built for the body <em class="italic">doing</em> them.</h1>
+      <p class="mt-8 text-body-lg max-w-2xl text-[var(--color-text-muted)]">
+        Three ways to work together — from a one-off plan to fully coached weekly support. Every programme starts with a free 30-minute consult and a written intake review, so the first session of week one is already mapped to your physiology.
+      </p>
+    </div>
+    <div class="md:col-span-4">
+      <div class="border-t-2 border-[var(--color-primary)] pt-6">
+        <div class="text-eyebrow text-[var(--color-text-muted)] mb-2">All programmes include</div>
+        <ul class="space-y-2 text-[var(--color-text)] text-sm">
+          <li>· Free 30-minute consult</li>
+          <li>· Written intake review</li>
+          <li>· No social-media posting</li>
+          <li>· Your data stays between us</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 pb-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)]">
+        {programs.map((p) => (
+          <article class:list={[
+            "p-8 md:p-10 flex flex-col bg-[var(--color-surface)] relative",
+            p.featured && "md:scale-y-[1.02] md:z-[1] bg-[var(--color-surface)] border-y-2 border-[var(--color-primary)]",
+          ]} data-reveal>
+            {p.featured && (
+              <div class="absolute -top-3 left-8 bg-[var(--color-accent)] text-[var(--color-on-dark)] text-[10px] tracking-[0.18em] uppercase font-semibold px-3 py-1">
+                Most popular
+              </div>
+            )}
+            <div class="text-eyebrow text-[var(--color-text-muted)]">Tier {p.tier}</div>
+            <h2 class="mt-2 text-3xl md:text-4xl font-[family-name:var(--font-display)] font-semibold text-[var(--color-primary)]">
+              {p.name}
+            </h2>
+            <div class="mt-4 flex items-baseline gap-2">
+              <span class="text-stats text-[var(--color-primary)]">{p.price}</span>
+              <span class="text-eyebrow text-[var(--color-text-muted)]">{p.billing}</span>
+            </div>
+            <p class="mt-6 text-[var(--color-text)] leading-relaxed">{p.blurb}</p>
+
+            <div class="mt-8 pt-6 border-t border-[var(--color-border)]">
+              <div class="text-eyebrow text-[var(--color-text-muted)] mb-4">Includes</div>
+              <ul class="space-y-3">
+                {p.includes.map((inc) => (
+                  <li class="flex gap-3 text-[var(--color-text)]">
+                    <span aria-hidden class="mt-2 inline-block w-2 h-2 shrink-0 bg-[var(--color-accent)]" />
+                    <span>{inc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-[var(--color-border)] text-sm flex-grow">
+              <span class="text-eyebrow text-[var(--color-accent)] block mb-2">Best for</span>
+              <p class="text-[var(--color-text-muted)]">{p.bestFor}</p>
+              <p class="mt-4 text-xs text-[var(--color-text-muted)] italic">{p.note}</p>
+            </div>
+
+            <a href="/intake" class:list={[
+              "mt-8 inline-flex items-center justify-center gap-2 py-4 text-xs font-semibold tracking-[0.12em] uppercase border transition-colors",
+              p.featured
+                ? "bg-[var(--color-primary)] text-[var(--color-on-dark)] border-[var(--color-primary)] hover:bg-[var(--color-primary-deep)]"
+                : "border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-on-dark)]",
+            ]}>
+              Book a free consult <span aria-hidden>→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="bg-[var(--color-surface-2)]/40 border-y border-[var(--color-border)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24" data-reveal>
+      <div class="text-eyebrow text-[var(--color-accent)] mb-4">Side-by-side</div>
+      <h2 class="text-display-sm mb-12">What changes between programmes.</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-[var(--color-primary)]">
+              <th class="py-4 pr-4 text-eyebrow text-[var(--color-text-muted)]">&nbsp;</th>
+              <th class="py-4 px-4 text-eyebrow text-[var(--color-primary)]">Phase Map</th>
+              <th class="py-4 px-4 text-eyebrow text-[var(--color-primary)]">Phase Coached</th>
+              <th class="py-4 px-4 text-eyebrow text-[var(--color-primary)]">Fully Coached</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.map(([feature, a, b, c]) => (
+              <tr class="border-b border-[var(--color-border)]">
+                <td class="py-4 pr-4 font-medium">{feature}</td>
+                <td class="py-4 px-4 text-[var(--color-text-muted)]">{a}</td>
+                <td class="py-4 px-4 text-[var(--color-text-muted)]">{b}</td>
+                <td class="py-4 px-4 text-[var(--color-text-muted)] font-semibold">{c}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ-lite + CTA -->
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24 grid grid-cols-1 md:grid-cols-12 gap-12" data-reveal>
+      <div class="md:col-span-5">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">Not sure which to pick?</div>
+        <h2 class="text-display-sm">The free consult is for figuring that out.</h2>
+        <p class="mt-6 text-body-lg text-[var(--color-text-muted)]">
+          A thirty-minute call. I've already read your intake. We talk goals, training history, and where cycle-synced programming would actually help. No obligation to sign up afterwards.
+        </p>
+        <a href="/intake" class="btn-primary mt-8">Book a free consult</a>
+      </div>
+      <div class="md:col-span-6 md:col-start-7">
+        <dl class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+          <div class="py-6">
+            <dt class="font-semibold text-[var(--color-primary)]">Is there a contract?</dt>
+            <dd class="mt-2 text-[var(--color-text-muted)]">Phase Coached is a one-month minimum. Fully Coached is a three-month minimum so we can run a full programming cycle. Cancel any time after.</dd>
+          </div>
+          <div class="py-6">
+            <dt class="font-semibold text-[var(--color-primary)]">Can I switch tiers later?</dt>
+            <dd class="mt-2 text-[var(--color-text-muted)]">Yes, both up and down. Plenty of clients start on Phase Coached and move to Fully Coached around a meet or race build.</dd>
+          </div>
+          <div class="py-6">
+            <dt class="font-semibold text-[var(--color-primary)]">What about an irregular cycle or hormonal contraception?</dt>
+            <dd class="mt-2 text-[var(--color-text-muted)]">All three programmes adapt for irregular cycles, PCOS, and hormonal contraception. We map to your physiology, not a textbook average.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</Layout>

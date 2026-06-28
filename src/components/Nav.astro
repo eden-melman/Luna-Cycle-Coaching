@@ -1,0 +1,93 @@
+---
+import NavConsultButton from "./NavConsultButton.jsx";
+
+export interface Props { pathname: string }
+const { pathname } = Astro.props as Props;
+
+const links = [
+  { href: "/programs", label: "Programs" },
+  { href: "/science", label: "Science" },
+  { href: "/coach", label: "Coach" },
+  { href: "/workshops", label: "Workshops" },
+  { href: "/faq", label: "FAQ" },
+];
+
+const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
+---
+
+<nav class="sticky top-0 z-40 bg-[var(--color-background)]/95 backdrop-blur border-b border-[var(--color-border)]">
+  <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-5 flex items-center justify-between">
+    <a href="/" class="font-[family-name:var(--font-display)] text-[var(--color-primary)] text-xl md:text-2xl tracking-tight font-semibold">
+      Luna<span class="text-[var(--color-accent)]"> ·</span> Cycle Coaching
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            "text-caps transition-colors",
+            isActive(l.href)
+              ? "text-[var(--color-primary)] border-b-2 border-[var(--color-accent)] pb-1"
+              : "text-[var(--color-text-muted)] hover:text-[var(--color-primary)]",
+          ]}
+        >
+          {l.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="/intake" class="hidden lg:block">
+        <NavConsultButton client:load />
+      </a>
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        class="lg:hidden inline-flex items-center justify-center w-11 h-11 border border-[var(--color-primary)] text-[var(--color-primary)]"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-[var(--color-border)] bg-[var(--color-background)]"
+  >
+    <div class="px-5 py-6 flex flex-col gap-1">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            "py-3 text-base border-b border-[var(--color-border)] font-[family-name:var(--font-body)] font-medium",
+            isActive(l.href)
+              ? "text-[var(--color-primary)]"
+              : "text-[var(--color-text)] hover:text-[var(--color-primary)]",
+          ]}
+        >
+          {l.label}
+        </a>
+      ))}
+      <a href="/intake" class="btn-primary mt-5 w-full">Book a free consult</a>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+    btn.addEventListener("click", () => {
+      const open = menu.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+  })();
+</script>

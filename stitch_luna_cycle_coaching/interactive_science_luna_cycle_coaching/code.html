@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head yqmysmbdsnwwiso="true"><meta id="yqmysmbdsnwwiso" yqmysmbdsnwwiso-init-complete="true"/><meta id="island-blob-storage-script" initialized="true"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Science | Luna Cycle Coaching</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Public+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2df",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ebb7df",
+                    "tertiary-fixed": "#ffd7f4",
+                    "outline": "#80747b",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fdf9f6",
+                    "tertiary-container": "#462842",
+                    "on-background": "#1c1b1a",
+                    "primary-fixed": "#ffd7f4",
+                    "primary-container": "#4a2545",
+                    "on-error-container": "#93000a",
+                    "secondary": "#9d4400",
+                    "secondary-fixed-dim": "#ffb68f",
+                    "on-surface": "#1c1b1a",
+                    "tertiary": "#2f132c",
+                    "on-surface-variant": "#4e444b",
+                    "secondary-fixed": "#ffdbca",
+                    "on-tertiary-container": "#b68ead",
+                    "surface-variant": "#e5e2df",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#e5bada",
+                    "on-secondary-fixed": "#331100",
+                    "surface-tint": "#7b5073",
+                    "surface-container-high": "#ebe7e5",
+                    "surface-container": "#f1edea",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fdf9f6",
+                    "outline-variant": "#d1c3cb",
+                    "inverse-surface": "#31302f",
+                    "surface-container-low": "#f7f3f0",
+                    "surface": "#fdf9f6",
+                    "on-secondary-container": "#692b00",
+                    "on-primary-fixed-variant": "#61395b",
+                    "on-primary-container": "#bc8bb1",
+                    "surface-dim": "#ddd9d6",
+                    "primary": "#32102f",
+                    "on-tertiary-fixed": "#2d112a",
+                    "inverse-primary": "#ebb7df",
+                    "inverse-on-surface": "#f4f0ed",
+                    "on-primary-fixed": "#300e2d",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#ff8841",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5d3c57",
+                    "on-secondary-fixed-variant": "#773200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Public Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Public Sans"],
+                    "stats-lg": ["Public Sans"],
+                    "body-md": ["Public Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "stats-lg": ["48px", {"lineHeight": "1", "letterSpacing": "-0.03em", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-filter-ring {
+            box-shadow: 0 0 0 2px #32102f;
+        }
+        .card-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .science-wheel-path {
+            transition: stroke-width 0.3s ease, opacity 0.3s ease, stroke 0.3s ease;
+            cursor: pointer;
+        }
+        .science-wheel-path:hover {
+            stroke-width: 10;
+        }
+        .asymmetric-bleed {
+            margin-right: -64px;
+        }
+        @media (max-width: 768px) {
+            .asymmetric-bleed {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface fixed top-0 w-full z-50 border-b border-outline-variant">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="text-headline-md font-headline-md text-primary tracking-tight">Luna Cycle Coaching</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Programs</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-label-caps text-label-caps" href="#">Science</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Coach</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Workshops</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 text-label-caps font-label-caps uppercase tracking-widest hover:bg-opacity-90 transition-all">
+                Book a free consult
+            </button>
+</nav>
+</header>
+<main class="pt-32 pb-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-20 items-end">
+<div class="md:col-span-7">
+<span class="font-label-caps text-label-caps text-secondary block mb-4">EVIDENCE-BASED PERFORMANCE</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8 leading-tight">The Science of <br/>the <span id="dynamic-headline">Follicular</span> Phase.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    We translate peer-reviewed sports science into actionable training metrics. Our methodology is rooted in the physiological shifts of the 28-day hormonal landscape, ensuring every interval serves your specific biology.
+                </p>
+</div>
+<div class="md:col-span-5 flex justify-center md:justify-end">
+<!-- Interactive Cycle Wheel -->
+<div class="relative w-64 h-64 md:w-80 md:h-80">
+<svg class="transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background Track -->
+<circle cx="50" cy="50" fill="none" r="42" stroke="#E4D7DF" stroke-width="8"></circle>
+<!-- Menstrual Phase (0-90 deg) -->
+<path class="science-wheel-path" d="M 50,8 A 42,42 0 0,1 92,50" data-phase="Menstrual" fill="none" id="path-menstrual" stroke="#32102f" stroke-linecap="butt" stroke-width="8"></path>
+<!-- Follicular Phase (90-180 deg) -->
+<path class="science-wheel-path" d="M 92,50 A 42,42 0 0,1 50,92" data-phase="Follicular" fill="none" id="path-follicular" stroke="#32102f" stroke-linecap="butt" stroke-width="8"></path>
+<!-- Ovulatory Phase (180-270 deg) -->
+<path class="science-wheel-path" d="M 50,92 A 42,42 0 0,1 8,50" data-phase="Ovulatory" fill="none" id="path-ovulatory" stroke="#32102f" stroke-linecap="butt" stroke-width="8"></path>
+<!-- Luteal Phase (270-360 deg) -->
+<path class="science-wheel-path" d="M 8,50 A 42,42 0 0,1 50,8" data-phase="Luteal" fill="none" id="path-luteal" stroke="#32102f" stroke-linecap="butt" stroke-width="8"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-label-caps text-[10px] tracking-widest opacity-60 uppercase mb-1">Phase</span>
+<span class="font-headline-md text-headline-md text-primary" id="current-phase-label">Follicular</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Science Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter transition-opacity duration-300" id="research-grid">
+<!-- Card 1 (Follicular - Featured) -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant p-8 card-transition flex flex-col justify-between group hover:border-primary" data-phase="Follicular">
+<div>
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-caps text-[10px] tracking-widest uppercase">Strong Evidence</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">01 / 08</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-6 group-hover:text-secondary transition-colors">Strength gains in the follicular phase</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl">
+                        Higher oestrogen levels during the follicular phase may support increased strength adaptation and neuromuscular efficiency. Research indicates a significant window for hypertrophy and peak power output before ovulation.
+                    </p>
+</div>
+<div class="pt-6 border-t border-outline-variant flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Citation</span>
+<span class="font-body-md text-body-md italic">Sung et al., 2014, SpringerPlus</span>
+</div>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 (Luteal) -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-outline-variant p-8 card-transition flex flex-col justify-between group hover:border-primary" data-phase="Luteal">
+<div>
+<div class="flex justify-between items-start mb-12">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] tracking-widest uppercase" style="color: #C25A12;">Moderate</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">02</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Perceived effort in the luteal phase</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Sessions can feel harder due to elevated core temperature and progesterone influence on metabolic rate.
+                    </p>
+</div>
+<div class="pt-6 border-t border-outline-variant mt-8">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase block mb-1">Citation</span>
+<span class="font-body-md text-body-md italic">McNulty et al., 2020</span>
+</div>
+</div>
+<!-- Card 3 (Ovulatory) -->
+<div class="md:col-span-4 bg-white border border-outline-variant p-8 card-transition group hover:border-primary" data-phase="Ovulatory">
+<span class="font-label-caps text-label-caps text-secondary block mb-4">LIGAMENT LAXITY</span>
+<h3 class="font-headline-md text-headline-md mb-4">Peak Oestrogen &amp; Injury Risk</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                    A sharp rise in oestrogen correlates with increased joint laxity. Training focus shifts to technical precision over high-impact volume.
+                </p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-body-md text-sm italic">Faryniarz et al., 2006</span>
+</div>
+</div>
+<!-- Card 4 (Menstrual) -->
+<div class="md:col-span-4 bg-white border border-outline-variant p-8 card-transition group hover:border-primary" data-phase="Menstrual">
+<span class="font-label-caps text-label-caps text-secondary block mb-4">GLYCOGEN SPARING</span>
+<h3 class="font-headline-md text-headline-md mb-4">Inflammation Response</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                    Prioritizing systemic recovery protocols reduces training-induced inflammation during day 1-3.
+                </p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-body-md text-sm italic">Sims, S.T., 2016</span>
+</div>
+</div>
+<!-- Card 5 (Follicular) -->
+<div class="md:col-span-4 bg-white border border-outline-variant p-8 card-transition group hover:border-primary" data-phase="Follicular">
+<span class="font-label-caps text-label-caps text-secondary block mb-4">METABOLIC FLEXIBILITY</span>
+<h3 class="font-headline-md text-headline-md mb-4">Glucose Utilization</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                    Bodies are more efficient at burning carbohydrates during high-intensity sessions in the early follicular phase.
+                </p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-body-md text-sm italic">D’Eon et al., 2002</span>
+</div>
+</div>
+<!-- Card 6 (Luteal) -->
+<div class="md:col-span-6 bg-surface-container-lowest border border-outline-variant p-8 card-transition flex flex-col justify-between group hover:border-primary" data-phase="Luteal">
+<div>
+<h3 class="font-headline-md text-headline-md mb-4">Fat Oxidation and Endurance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        The mid-luteal phase sees a shift toward fat oxidation, favoring long-duration, low-to-moderate intensity 'Zone 2' efforts.
+                    </p>
+</div>
+<div class="pt-4 border-t border-outline-variant flex items-center justify-between">
+<span class="font-body-md text-sm italic">Zderic et al., 2001</span>
+<span class="px-2 py-1 border border-outline text-[10px] font-label-caps uppercase">Clinical Review</span>
+</div>
+</div>
+<!-- Card 7 (Menstrual - Data Focus) -->
+<div class="md:col-span-6 bg-primary text-on-primary p-8 card-transition flex flex-col justify-between" data-phase="Menstrual">
+<div>
+<div class="flex justify-between items-start mb-8">
+<span class="font-label-caps text-label-caps opacity-60">HEART RATE VARIABILITY</span>
+<span class="material-symbols-outlined opacity-60">monitoring</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-on-primary">Parasympathetic Dominance</h3>
+<p class="font-body-md text-body-md text-on-primary opacity-80 mb-6">
+                    Post-menses, HRV typically rebounds as the body moves away from the inflammatory phase, signaling readiness for high-load cycles.
+                </p>
+</div>
+<div>
+<div class="text-stats-lg font-stats-lg text-secondary-fixed mb-2">84ms</div>
+<div class="font-label-caps text-[10px] tracking-widest opacity-60 text-on-primary">AVERAGE BASELINE RECOVERY RATE</div>
+</div>
+</div>
+<!-- Card 8 (Follicular - Visual) -->
+<div class="md:col-span-12 h-64 md:h-80 relative overflow-hidden card-transition" data-phase="Follicular">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeM21JX5OnljmFPSgq5uV3awQzK7tWPxmBFZk3NGVT14P5jf7lu8nhKk7IhmWaM9YIxoS9zHs9QrCQ2dTJeUYwJOXdk74eSlV-eofE20TmapG79xwI6-kzoKoqTlHQ8dwXgwXuA-5dZ_dbELNmi-eyDOLwtroVe8zYNxX1nusdYApehGVzyd8vD4lZD40wqn5XKn2f9YmL5S8dTouGxe-SrUylqzWgYNL2zkMUZmRKBv5_h5ABq5F1pqRimK3QbFSdYee5OjuYj1A')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-8">
+<div class="text-on-primary">
+<h3 class="font-headline-lg text-headline-lg mb-2">Neuromuscular Recruitment</h3>
+<p class="font-body-md text-body-md opacity-80 max-w-xl">Optimizing the late follicular window for maximum sprint performance and power threshold testing.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary mb-4">Luna Cycle</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Editorial Sports-Science for Women.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-caps text-label-caps text-primary uppercase mb-2">Platform</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Programs</a>
+<a class="text-primary underline font-body-md" href="#">Science</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Workshops</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-caps text-label-caps text-primary uppercase mb-2">Academy</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Credentials</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Sitemap</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Research Portal</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-label-caps text-label-caps text-primary uppercase mb-2">Legal</h4>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Cookie Settings</a>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 py-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest opacity-60">© 2024 Luna Cycle Coaching. Editorial Sports-Science for Women.</p>
+</div>
+</footer>
+<script>
+    const paths = document.querySelectorAll('.science-wheel-path');
+    const cards = document.querySelectorAll('#research-grid > div');
+    const phaseLabel = document.getElementById('current-phase-label');
+    const dynamicHeadline = document.getElementById('dynamic-headline');
+    const researchGrid = document.getElementById('research-grid');
+
+    function setActivePhase(phase) {
+        // 1. Update Labels
+        phaseLabel.textContent = phase;
+        dynamicHeadline.textContent = phase;
+
+        // 2. Update Wheel Visuals
+        paths.forEach(path => {
+            if (path.getAttribute('data-phase') === phase) {
+                path.style.opacity = '1';
+                path.style.stroke = '#32102f'; // Primary color (deep plum)
+            } else {
+                path.style.opacity = '0.2';
+                path.style.stroke = '#80747b'; // Muted/Greyed out
+            }
+        });
+
+        // 3. Filter Research Cards with Transition
+        researchGrid.style.opacity = '0';
+        
+        setTimeout(() => {
+            cards.forEach(card => {
+                if (card.getAttribute('data-phase') === phase) {
+                    card.classList.remove('hidden');
+                    card.style.display = 'flex';
+                } else {
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                }
+            });
+            researchGrid.style.opacity = '1';
+        }, 300);
+    }
+
+    // Add Click Listeners
+    paths.forEach(path => {
+        path.addEventListener('click', () => {
+            setActivePhase(path.getAttribute('data-phase'));
+        });
+    });
+
+    // Initialize with Follicular
+    window.addEventListener('DOMContentLoaded', () => {
+        setActivePhase('Follicular');
+    });
+</script>
+</body></html>

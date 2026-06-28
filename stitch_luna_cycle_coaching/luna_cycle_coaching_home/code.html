@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Cycle Coaching | Editorial Sports-Science for Women</title>
+<!-- Fonts: Playfair Display for GT Sectra-like editorial feel, Public Sans for precision -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Public+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2df",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ebb7df",
+                    "tertiary-fixed": "#ffd7f4",
+                    "outline": "#80747b",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fdf9f6",
+                    "tertiary-container": "#462842",
+                    "on-background": "#1c1b1a",
+                    "primary-fixed": "#ffd7f4",
+                    "primary-container": "#4a2545",
+                    "on-error-container": "#93000a",
+                    "secondary": "#9d4400",
+                    "secondary-fixed-dim": "#ffb68f",
+                    "on-surface": "#1c1b1a",
+                    "tertiary": "#2f132c",
+                    "on-surface-variant": "#4e444b",
+                    "secondary-fixed": "#ffdbca",
+                    "on-tertiary-container": "#b68ead",
+                    "surface-variant": "#e5e2df",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#e5bada",
+                    "on-secondary-fixed": "#331100",
+                    "surface-tint": "#7b5073",
+                    "surface-container-high": "#ebe7e5",
+                    "surface-container": "#f1edea",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fdf9f6",
+                    "outline-variant": "#d1c3cb",
+                    "inverse-surface": "#31302f",
+                    "surface-container-low": "#f7f3f0",
+                    "surface": "#fdf9f6",
+                    "on-secondary-container": "#692b00",
+                    "on-primary-fixed-variant": "#61395b",
+                    "on-primary-container": "#bc8bb1",
+                    "surface-dim": "#ddd9d6",
+                    "primary": "#32102f",
+                    "on-tertiary-fixed": "#2d112a",
+                    "inverse-primary": "#ebb7df",
+                    "inverse-on-surface": "#f4f0ed",
+                    "on-primary-fixed": "#300e2d",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#ff8841",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5d3c57",
+                    "on-secondary-fixed-variant": "#773200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Public Sans"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Public Sans"],
+                    "stats-lg": ["Public Sans"],
+                    "body-md": ["Public Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "stats-lg": ["48px", {"lineHeight": "1", "letterSpacing": "-0.03em", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fdf9f6; /* Warm off-white paper background */
+            color: #32102f; /* Deep plum text */
+            -webkit-font-smoothing: antialiased;
+        }
+        .cycle-wheel-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+        }
+        .cycle-segment {
+            transition: all 0.5s ease;
+        }
+        .cycle-segment:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+        .editorial-rule {
+            border-bottom: 1px solid #E4D7DF;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Shell -->
+<nav class="bg-surface docked full-width top-0 border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto z-50 sticky">
+<div class="text-headline-md font-headline-md text-primary tracking-tight">Luna Cycle Coaching</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Programs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Science</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Coach</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Workshops</a>
+</div>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded-none hover:bg-secondary transition-all">
+            Book a free consult
+        </button>
+</nav>
+<main>
+<!-- Section 1: Hero Editorial Split -->
+<section class="min-h-[819px] flex flex-col md:grid md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop py-16 items-center">
+<div class="md:col-span-7 flex flex-col justify-center">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary max-w-2xl">
+                    Your body runs on a <span class="text-primary italic font-semibold">four-week</span> <span class="tracking-tighter">clock</span>. Your training plan should too.
+                </h1>
+<p class="mt-8 font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Stop training like a small man. Leverage your physiological shifts to maximize strength, recovery, and performance across your entire cycle.
+                </p>
+<div class="mt-12 flex gap-4">
+<button class="px-8 py-4 bg-primary text-on-primary font-label-caps text-label-caps hover:bg-secondary transition-colors">Start Your Assessment</button>
+<button class="px-8 py-4 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-colors">The Science</button>
+</div>
+</div>
+<div class="md:col-span-5 w-full flex justify-center items-center relative py-12">
+<!-- Signature 4-Phase Cycle Wheel SVG Animation/Graphic -->
+<div class="w-full max-w-[400px] aspect-square relative">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#E4D7DF" stroke-width="0.5"></circle>
+<!-- Phase 1: Menstrual -->
+<path class="cycle-segment" d="M 50 50 L 50 5 A 45 45 0 0 1 85 22.5 Z" fill="#32102f"></path>
+<!-- Phase 2: Follicular -->
+<path class="cycle-segment" d="M 50 50 L 85 22.5 A 45 45 0 0 1 95 50 Z" fill="#4a2545" opacity="0.8"></path>
+<!-- Phase 3: Ovulatory -->
+<path class="cycle-segment" d="M 50 50 L 95 50 A 45 45 0 0 1 50 95 Z" fill="#9d4400"></path>
+<!-- Phase 4: Luteal -->
+<path class="cycle-segment" d="M 50 50 L 50 95 A 45 45 0 0 1 5 50 Z" fill="#61395b" opacity="0.6"></path>
+</svg>
+<!-- Center Label -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">THE LUNA</span>
+<span class="font-headline-md text-headline-md text-primary">CYCLE</span>
+</div>
+<!-- External Labels (Floating) -->
+<div class="absolute top-0 right-0 p-2 font-label-caps text-[10px] text-primary">MENSTRUAL / RECOVERY</div>
+<div class="absolute top-1/2 -right-12 -translate-y-1/2 p-2 font-label-caps text-[10px] text-primary rotate-90">FOLLICULAR / POWER</div>
+<div class="absolute bottom-0 right-0 p-2 font-label-caps text-[10px] text-secondary">OVULATORY / PEAK</div>
+<div class="absolute bottom-1/2 -left-12 -translate-y-1/2 p-2 font-label-caps text-[10px] text-primary -rotate-90">LUTEAL / ENDURANCE</div>
+</div>
+</div>
+</section>
+<!-- Section 2: The Four Phases Editorial Grid -->
+<section class="bg-surface-container py-24 border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="mb-16">
+<span class="font-label-caps text-label-caps text-secondary">01 / PHYSIOLOGY</span>
+<h2 class="mt-4 font-display-lg text-headline-lg md:text-display-lg text-primary">The Seasonal Body</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Phase 1 Card -->
+<div class="bg-surface p-8 border border-outline-variant flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary opacity-20">01</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-4">Menstrual</h3>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant flex-grow">
+                            Low hormones. Focus on structural recovery, mobility, and steady-state movement. The body is rebuilding its foundation.
+                        </p>
+<div class="mt-8 pt-4 border-t border-outline-variant font-label-caps text-[10px]">TRAINING: INTUITION &amp; FLOW</div>
+</div>
+<!-- Phase 2 Card -->
+<div class="bg-surface p-8 border border-outline-variant flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary opacity-20">02</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-4">Follicular</h3>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant flex-grow">
+                            Rising estrogen. Strength peaks. This is the window for high-intensity intervals and progressive overload.
+                        </p>
+<div class="mt-8 pt-4 border-t border-outline-variant font-label-caps text-[10px]">TRAINING: EXPLOSIVE POWER</div>
+</div>
+<!-- Phase 3 Card -->
+<div class="bg-surface p-8 border border-outline-variant flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary opacity-20">03</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-4">Ovulatory</h3>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant flex-grow">
+                            Hormonal peak. Maximal metabolic capacity. Focus on technical mastery and PR attempts before the shift.
+                        </p>
+<div class="mt-8 pt-4 border-t border-outline-variant font-label-caps text-[10px]">TRAINING: HIGH VOLUME</div>
+</div>
+<!-- Phase 4 Card -->
+<div class="bg-surface p-8 border border-outline-variant flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary opacity-20">04</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-4">Luteal</h3>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant flex-grow">
+                            Progesterone rises. Core temperature climbs. Shift toward endurance, fat oxidation, and technical refinement.
+                        </p>
+<div class="mt-8 pt-4 border-t border-outline-variant font-label-caps text-[10px]">TRAINING: METABOLIC LOAD</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: How it Works (Three-step) -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4 sticky top-32 h-fit">
+<span class="font-label-caps text-label-caps text-secondary">02 / METHODOLOGY</span>
+<h2 class="mt-4 font-display-lg text-headline-lg md:text-display-lg text-primary">Precision, not guesswork.</h2>
+</div>
+<div class="md:col-span-7 md:col-start-6 space-y-24">
+<div class="flex gap-8 items-start">
+<span class="font-stats-lg text-stats-lg text-primary leading-none">01</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary">Log the Signal</h4>
+<p class="mt-4 text-body-lg font-body-lg text-on-surface-variant">We integrate with your wearable data and hormonal tracking to identify your unique bio-rhythms. It's not just a calendar; it's a living data set.</p>
+</div>
+</div>
+<div class="flex gap-8 items-start">
+<span class="font-stats-lg text-stats-lg text-primary leading-none">02</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary">Map the Intensity</h4>
+<p class="mt-4 text-body-lg font-body-lg text-on-surface-variant">Your training plan automatically shifts daily. If you're in a high-inflammation phase, we adjust for recovery without losing fitness.</p>
+</div>
+</div>
+<div class="flex gap-8 items-start">
+<span class="font-stats-lg text-stats-lg text-primary leading-none">03</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary">Stop Fighting</h4>
+<p class="mt-4 text-body-lg font-body-lg text-on-surface-variant">Instead of gritting your teeth through a "bad day," you'll understand it as a physiological requirement. Consistency through intelligence, not force.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Programs Preview -->
+<section class="bg-primary text-on-primary py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex justify-between items-end mb-16 border-b border-primary-container pb-8">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim">03 / COACHING</span>
+<h2 class="mt-4 font-display-lg text-headline-lg md:text-display-lg">Select Your Tier</h2>
+</div>
+<div class="hidden md:block font-label-caps text-label-caps tracking-[0.2em]">EST. 2024</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Tier 1 -->
+<div class="p-8 border border-primary-container flex flex-col group hover:bg-primary-container transition-colors duration-300">
+<h3 class="font-headline-md text-headline-md">Phase Map</h3>
+<p class="mt-4 font-body-md text-on-primary-container opacity-80 flex-grow">A digital-first autonomous program. Receive your personalized 28-day training template based on your cycle length.</p>
+<div class="mt-12">
+<div class="text-stats-lg font-stats-lg">$49<span class="text-body-md">/mo</span></div>
+<button class="mt-6 w-full py-4 border border-on-primary font-label-caps text-label-caps group-hover:bg-on-primary group-hover:text-primary transition-all">Enroll Now</button>
+</div>
+</div>
+<!-- Tier 2 -->
+<div class="p-8 border border-primary-container flex flex-col bg-primary-container relative">
+<div class="absolute -top-4 right-8 bg-secondary px-3 py-1 text-[10px] font-label-caps">MOST RECOMMENDED</div>
+<h3 class="font-headline-md text-headline-md">Mid-Tier Performance</h3>
+<p class="mt-4 font-body-md text-on-primary-container flex-grow">Dynamic TrainingPeaks integration. Weekly adjustments based on HRV and cycle symptoms. Bi-weekly data reviews.</p>
+<div class="mt-12">
+<div class="text-stats-lg font-stats-lg">$180<span class="text-body-md">/mo</span></div>
+<button class="mt-6 w-full py-4 bg-on-primary text-primary font-label-caps text-label-caps">Request Access</button>
+</div>
+</div>
+<!-- Tier 3 -->
+<div class="p-8 border border-primary-container flex flex-col group hover:bg-primary-container transition-colors duration-300">
+<h3 class="font-headline-md text-headline-md">Fully Coached Elite</h3>
+<p class="mt-4 font-body-md text-on-primary-container opacity-80 flex-grow">Unlimited communication. Lab-grade blood metric analysis. Custom fueling plans for every workout and race.</p>
+<div class="mt-12">
+<div class="text-stats-lg font-stats-lg">$450<span class="text-body-md">/mo</span></div>
+<button class="mt-6 w-full py-4 border border-on-primary font-label-caps text-label-caps group-hover:bg-on-primary group-hover:text-primary transition-all">Apply to Join</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Science, briefly (Amber Accent) -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="max-w-3xl mx-auto">
+<span class="font-label-caps text-label-caps text-secondary mb-8 block tracking-widest italic">“WOMEN ARE NOT SMALL MEN” — DR. STACY SIMS</span>
+<p class="font-display-lg text-headline-md md:text-headline-lg text-primary italic leading-relaxed">
+                    Research confirms that hormonal fluctuations impact everything from <span class="border-b-2 border-secondary pb-1 not-italic">ligament laxity</span> to glycogen storage. We don't just coach; we apply clinical evidence to the saddle.
+                </p>
+<a class="mt-12 inline-flex items-center gap-2 font-label-caps text-label-caps text-secondary border-b border-secondary pb-1 hover:opacity-70 transition-opacity" href="#">
+                    READ THE WHITE PAPERS 
+                    <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Section 6: Coach Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-outline-variant">
+<div class="md:col-span-6 h-[600px]">
+<img class="w-full h-full object-cover grayscale brightness-90 contrast-110" data-alt="A moody, high-contrast documentary-style photograph of a female cycling coach in her mid-30s. She is standing in a minimalist concrete studio, wearing professional black cycling gear, looking intently at a digital tablet showing training metrics. The lighting is dramatic, highlighting the plum-toned shadows and warm amber skin tones, conveying an atmosphere of clinical precision and athletic authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs5m6zxLlmm49B-5udzAVIy-UX8eSbbZMY-m2rxhGWNRdLMlOpJb6gB9Q6jGJy8V0qh2inJI4lyd1oxdTMc0csKYg_PP-Mn3uxE3gRjfca1hdwPwaFQHzsMjuhBcMuZ4rYlAslONbRwlrn1RlHn1MrDRWsDF7KEuORG_poSwdkEslb2yYgU9SDwPfM8VotICTfnK6Ji7FzGJ01saHt77L9_Tp5bt1uRiXnZfg_2h7PIbJHgYc298HfQjorukUg5sGA_A_5xmaeDwk"/>
+</div>
+<div class="md:col-span-6 p-16 md:p-24 flex flex-col justify-center bg-surface">
+<span class="font-label-caps text-label-caps text-secondary">04 / THE FOUNDER</span>
+<h2 class="mt-4 font-display-lg text-headline-lg text-primary">Dr. Elena Thorne</h2>
+<div class="mt-8 space-y-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant">PhD in Sports Science, UCI Level 3 Coach. Elena spent a decade in pro peloton labs before realizing the data she was using was entirely based on male physiology.</p>
+<p class="font-body-lg text-body-lg font-semibold text-primary">“The 'No-Girl-Workout' philosophy is simple: we stop apologizing for our biology and start weaponizing it. Every session is an experiment in peak performance.”</p>
+</div>
+<div class="mt-12 flex gap-8">
+<div class="flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary">12+</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Years Research</span>
+</div>
+<div class="flex flex-col">
+<span class="font-stats-lg text-stats-lg text-primary">500</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Athletes Coached</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Testimonials -->
+<section class="py-32 bg-surface-container-low overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+<div class="relative">
+<span class="absolute -top-12 -left-8 font-display-lg text-[120px] text-primary opacity-5">“</span>
+<p class="font-display-lg text-headline-md md:text-headline-lg text-primary leading-tight italic">
+                            For years, I thought I was just 'lazy' one week out of every four. Elena showed me it was actually my highest fat-burning phase. We switched my fueling, and I PR'd my first century two months later.
+                        </p>
+<div class="mt-12">
+<div class="font-label-caps text-label-caps text-primary">PRIYA NAIR</div>
+<div class="font-body-md text-[14px] text-on-surface-variant">Cat 2 Road Racer, London</div>
+</div>
+</div>
+<div class="relative">
+<span class="absolute -top-12 -left-8 font-display-lg text-[120px] text-primary opacity-5">“</span>
+<p class="font-display-lg text-headline-md md:text-headline-lg text-primary leading-tight italic">
+                            Luna isn't just coaching; it's an education. I finally stopped fighting my body and started working with it. The results in my power profile are undeniable.
+                        </p>
+<div class="mt-12">
+<div class="font-label-caps text-label-caps text-primary">HANNAH BROOKS</div>
+<div class="font-body-md text-[14px] text-on-surface-variant">Ironman 70.3 Athlete</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 8: Footer CTA -->
+<section class="bg-surface py-32 border-t border-outline-variant text-center">
+<div class="px-margin-mobile md:px-margin-desktop max-w-2xl mx-auto">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary leading-none">Ready to shift?</h2>
+<p class="mt-8 font-body-lg text-body-lg text-on-surface-variant">Let's look at your data together. No commitment, just thirty minutes of pure physiology.</p>
+<div class="mt-12">
+<button class="px-12 py-5 bg-primary text-on-primary font-label-caps text-label-caps hover:bg-secondary transition-all flex items-center gap-4 mx-auto">
+                        Book a free thirty-minute consult
+                        <span class="material-symbols-outlined">calendar_today</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container border-t border-outline-variant py-16">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary">Luna Cycle Coaching</div>
+<p class="mt-4 font-body-md text-on-surface-variant text-[14px] leading-relaxed">
+                    © 2024 Luna Cycle Coaching. Editorial Sports-Science for Women.
+                </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-primary mb-2">PAGES</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Programs</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Science</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Coach</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Workshops</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-primary mb-2">RESOURCES</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Sitemap</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Credentials</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-label-caps text-primary mb-2">CONNECT</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Substack</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<!-- Simple Interactivity -->
+<script>
+        document.querySelectorAll('.cycle-segment').forEach(segment => {
+            segment.addEventListener('mouseenter', () => {
+                segment.style.filter = 'brightness(1.2)';
+            });
+            segment.addEventListener('mouseleave', () => {
+                segment.style.filter = 'none';
+            });
+        });
+    </script>
+</body></html>

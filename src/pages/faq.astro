@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const description =
+  "Answers to the practical and skeptical questions about cycle-synced training, programming for irregular cycles, hormonal contraception, and what to expect from a Luna Cycle Coaching consult.";
+
+const faqs = [
+  {
+    q: "Do I need to track my cycle already?",
+    a: "No. If you track, great — bring the data. If you don't, the intake and first consult cover what to log and how. The whole point is to make tracking useful, not another chore.",
+  },
+  {
+    q: "What if my cycle is irregular, or I'm on hormonal birth control?",
+    a: "Plenty of clients are. Irregular cycles, PCOS, and hormonal contraception all change the picture, and the programming adapts accordingly. We map to your physiology, not a textbook average.",
+  },
+  {
+    q: "Is this only for advanced lifters?",
+    a: "No. Programmes run from a one-off Phase Map for self-guided trainers to fully coached weekly support. The science applies whether you're starting out or chasing a meet.",
+  },
+  {
+    q: "Is this just normal training with a pink label on it?",
+    a: "The opposite. It's standard, well-built strength and conditioning that finally accounts for a four-week hormonal cycle instead of pretending everyone runs on a flat line. No pink, no 'girl workouts', just programming written for the body doing it.",
+  },
+  {
+    q: "What does the free consult involve?",
+    a: "A thirty-minute call where I've already read your intake. We talk goals, training history, and where cycle-synced programming would actually help. No obligation to sign up afterwards.",
+  },
+  {
+    q: "Do you run corporate workshops?",
+    a: "Yes, for teams who want their staff to understand cycle-aware training and recovery. Spring is heavily booked, so enquire early through the workshops page.",
+  },
+  {
+    q: "What if I'm perimenopausal or post-menopausal?",
+    a: "Cycle-synced programming becomes phase-of-life programming. The same physiology-led approach applies — we just map to where you are now, including symptom load, sleep, and recovery realities.",
+  },
+  {
+    q: "Are sessions in person or remote?",
+    a: "Fully Coached includes one quarterly in-person session in London or a 1:1 video call. The day-to-day programming and feedback happens by written check-in and video, so clients outside London work the same way.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<Layout title="FAQ" description={description} pathname="/faq" jsonLd={faqJsonLd}>
+  <section class="max-w-[var(--container-narrow)] mx-auto px-5 md:px-16 pt-16 md:pt-24 pb-12">
+    <div class="text-eyebrow text-[var(--color-accent)] mb-4">FAQ</div>
+    <h1 class="text-display max-w-[18ch]">The practical and the skeptical questions. Answered.</h1>
+    <p class="mt-8 text-body-lg max-w-2xl text-[var(--color-text-muted)]">
+      If your question isn't here, send it through the consult booking and I'll answer on the call.
+    </p>
+  </section>
+
+  <section class="max-w-[var(--container-narrow)] mx-auto px-5 md:px-16 pb-20">
+    <dl class="divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+      {faqs.map((f, i) => (
+        <details class="group py-8" data-reveal>
+          <summary class="flex items-start justify-between gap-8 cursor-pointer list-none">
+            <dt class="font-[family-name:var(--font-display)] text-xl md:text-2xl font-semibold text-[var(--color-primary)]">
+              <span class="text-eyebrow text-[var(--color-accent)] mr-3 align-middle">{String(i + 1).padStart(2, "0")}</span>
+              {f.q}
+            </dt>
+            <span aria-hidden class="text-[var(--color-primary)] text-3xl leading-none transition-transform duration-300 group-open:rotate-45 shrink-0">
+              +
+            </span>
+          </summary>
+          <dd class="mt-4 ml-12 text-body-lg text-[var(--color-text-muted)] max-w-3xl leading-relaxed">
+            {f.a}
+          </dd>
+        </details>
+      ))}
+    </dl>
+  </section>
+
+  <section class="bg-[var(--color-primary)] text-[var(--color-on-dark)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24 text-center" data-reveal>
+      <h2 class="text-display-sm text-[var(--color-on-dark)] max-w-[24ch] mx-auto">
+        Still have a question?
+      </h2>
+      <p class="mt-6 max-w-xl mx-auto opacity-85 text-body-lg">
+        Send it through the intake — I read every one before the free consult.
+      </p>
+      <a href="/intake" class="btn-primary mt-10 bg-[var(--color-on-dark)] text-[var(--color-primary)] border-[var(--color-on-dark)] hover:bg-[var(--color-accent-bright)] hover:border-[var(--color-accent-bright)] hover:text-[var(--color-dark)]">
+        Book a free consult →
+      </a>
+    </div>
+  </section>
+</Layout>

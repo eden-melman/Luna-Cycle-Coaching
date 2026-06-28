@@ -1,0 +1,424 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CycleWheel from "../components/CycleWheel.astro";
+import PhaseWheelInteractive from "../components/PhaseWheelInteractive.jsx";
+
+const description =
+  "London-based, sports-science-led strength and conditioning for women. Training plans mapped to the four phases of your menstrual cycle. No 'girl workouts', no guesswork.";
+
+const phases = [
+  {
+    n: "01",
+    name: "Menstrual",
+    days: "Day 1–5",
+    color: "#6E2A60",
+    headline: "Recover with intent",
+    body:
+      "Hormones bottom out. Energy can drop. We protect the foundation with deload sessions, low-impact aerobic work, and mobility — not because you're fragile, but because adaptation needs space.",
+    label: "Easy aerobic · Mobility · Light technique",
+  },
+  {
+    n: "02",
+    name: "Follicular",
+    days: "Day 6–13",
+    color: "#4A2545",
+    headline: "Build heavy",
+    body:
+      "Rising oestrogen primes the system for hard work. Strength adapts faster, motor learning sharpens. We front-load your heaviest compound lifts and skill blocks in this window.",
+    label: "Heavy compounds · Skill · Progressive overload",
+  },
+  {
+    n: "03",
+    name: "Ovulatory",
+    days: "Day 14–16",
+    color: "#C25A12",
+    headline: "Test the ceiling",
+    body:
+      "Peak hormonal output. The week to attempt PRs and high-power efforts — with awareness that ligament laxity also peaks, so technique is non-negotiable.",
+    label: "PR attempts · Sprints · Power",
+  },
+  {
+    n: "04",
+    name: "Luteal",
+    days: "Day 17–28",
+    color: "#8E4267",
+    headline: "Sustain, don't shrink",
+    body:
+      "Progesterone climbs, core temperature climbs, perceived effort climbs. We hold intensity, adjust volume, lean into aerobic capacity and accessory work. A hard-feeling week is physiology, not failure.",
+    label: "Aerobic base · Accessory · Steady intensity",
+  },
+];
+
+const programs = [
+  {
+    name: "Phase Map",
+    price: "£45",
+    billing: "one-off",
+    blurb:
+      "A four-phase training template built from your intake, a cycle-tracking guide, and one written plan review.",
+    bestFor: "Self-motivated lifters who want the framework without weekly coaching.",
+  },
+  {
+    name: "Phase Coached",
+    price: "£95",
+    billing: "per month",
+    blurb:
+      "Phase-mapped programming refreshed monthly, two written check-ins per cycle, message support, and one form-review video per phase.",
+    bestFor: "Lifters training three to four times a week who want a coach in the loop.",
+    featured: true,
+  },
+  {
+    name: "Fully Coached",
+    price: "£160",
+    billing: "per month",
+    blurb:
+      "Phase-mapped programming updated every cycle, weekly check-ins, form review by video, and unlimited message support.",
+    bestFor: "Anyone training four-plus times a week who wants the plan to adapt as their cycle does.",
+  },
+];
+
+const testimonials = [
+  {
+    name: "Priya Nair",
+    quote:
+      "I PR-ed my deadlift in week two for the first time in my life. Turns out I was just always testing in the wrong week.",
+    detail: "On Fully Coached for eight months, training for her first powerlifting meet.",
+  },
+  {
+    name: "Hannah Brooks",
+    quote:
+      "My luteal week used to feel like failure. Now it is just a planned deload and I stopped quitting every month.",
+    detail: "Switched from a generic app plan to Phase Map last spring.",
+  },
+  {
+    name: "Anya Lindgren",
+    quote:
+      "Training around my cycle finally explained the data I'd been ignoring for years. I trust my body now.",
+    detail: "CrossFit regular, four months in on Phase Coached.",
+  },
+];
+
+const homepageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: "https://luna-cycle-4c4ceffe-edenme5.wix-site-host.com/",
+  name: "Luna Cycle Coaching",
+  description,
+};
+---
+
+<Layout
+  title="Home"
+  description={description}
+  pathname="/"
+  jsonLd={homepageJsonLd}
+>
+  <!-- HERO -->
+  <section class="relative">
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none opacity-[0.07]"
+      style="background-image: linear-gradient(to bottom, transparent 0, transparent calc(1.5rem - 1px), rgba(74,37,69,1) calc(1.5rem - 1px), rgba(74,37,69,1) 1.5rem, transparent 1.5rem); background-size: 100% 1.5rem;"
+    ></div>
+
+    <div class="relative max-w-[var(--container-max)] mx-auto px-5 md:px-16 pt-10 md:pt-20 pb-20 md:pb-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div class="order-2 lg:order-1 lg:col-span-7">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-6">
+          <span data-anim="hero-cta" style="animation-delay:0ms">London · Strength · Evidence-led</span>
+        </div>
+
+        <h1 class="text-display max-w-[18ch]">
+          <span data-anim="hero-word" style="animation-delay:0ms">Your</span>
+          <span data-anim="hero-word" style="animation-delay:60ms">body</span>
+          <span data-anim="hero-word" style="animation-delay:120ms">runs</span>
+          <span data-anim="hero-word" style="animation-delay:180ms">on</span>
+          <span data-anim="hero-word" style="animation-delay:240ms">a</span>
+          <span
+            data-anim="hero-word"
+            style="animation-delay:300ms; color: var(--color-primary); font-style: italic;"
+          >four-week</span>
+          <span data-anim="hero-word" style="animation-delay:360ms; letter-spacing:-0.04em;">clock.</span>
+          <br/>
+          <span data-anim="hero-word" style="animation-delay:520ms">Your</span>
+          <span data-anim="hero-word" style="animation-delay:560ms">training</span>
+          <span data-anim="hero-word" style="animation-delay:600ms">plan</span>
+          <span data-anim="hero-word" style="animation-delay:640ms">should</span>
+          <span data-anim="hero-word" style="animation-delay:680ms">too.</span>
+        </h1>
+
+        <p class="mt-8 text-body-lg max-w-xl text-[var(--color-text-muted)]" data-anim="hero-cta" style="animation-delay:100ms">
+          London-based strength coaching that maps your week to your cycle — heavy lifts in the right phase, deloads when your body actually needs them, and an end to apologising for an off week.
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-4" data-anim="hero-cta" style="animation-delay:200ms">
+          <a href="/intake" class="btn-primary">Book a free consult</a>
+          <a href="/science" class="btn-secondary">Read the science first</a>
+        </div>
+
+        <dl class="mt-12 flex flex-wrap gap-x-12 gap-y-6 text-[var(--color-text)]" data-anim="hero-cta" style="animation-delay:300ms">
+          <div>
+            <dt class="text-eyebrow text-[var(--color-text-muted)]">Phases mapped</dt>
+            <dd class="text-stats">4</dd>
+          </div>
+          <div>
+            <dt class="text-eyebrow text-[var(--color-text-muted)]">Studies cited</dt>
+            <dd class="text-stats">40+</dd>
+          </div>
+          <div>
+            <dt class="text-eyebrow text-[var(--color-text-muted)]">Years coaching</dt>
+            <dd class="text-stats">5</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="order-1 lg:order-2 lg:col-span-5 flex justify-center">
+        <div class="w-full max-w-[420px]">
+          <CycleWheel animate={true} />
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-[var(--color-border)]"></div>
+  </section>
+
+  <!-- FOUR PHASES -->
+  <section class="bg-[var(--color-surface-2)]/40">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24" data-reveal>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 items-end">
+        <div class="md:col-span-7">
+          <div class="text-eyebrow text-[var(--color-accent)] mb-4">01 / The four phases</div>
+          <h2 class="text-display-sm">Four phases. Four ways your body wants to work.</h2>
+        </div>
+        <p class="md:col-span-5 text-body-lg text-[var(--color-text-muted)]">
+          We don't train flat — your hormones don't. Each phase has its own job in the training week, and the plan adjusts so you're working with the physiology you actually have on the day.
+        </p>
+      </div>
+
+      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-border)] border border-[var(--color-border)]">
+        {phases.map((p) => (
+          <li class="bg-[var(--color-surface)] p-8 flex flex-col" data-reveal>
+            <div class="flex items-baseline justify-between">
+              <span class="text-stats" style={`color:${p.color}; opacity:0.25`}>{p.n}</span>
+              <span class="text-eyebrow text-[var(--color-text-muted)]">{p.days}</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-[family-name:var(--font-display)] font-semibold" style={`color:${p.color}`}>{p.name}</h3>
+            <p class="mt-2 font-medium text-[var(--color-text)]">{p.headline}</p>
+            <p class="mt-4 text-[var(--color-text-muted)] text-[0.95rem] leading-relaxed flex-grow">
+              {p.body}
+            </p>
+            <div class="mt-8 pt-4 border-t border-[var(--color-border)] text-eyebrow text-[var(--color-text-muted)]">
+              {p.label}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28 grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div class="md:col-span-4 md:sticky md:top-32 self-start" data-reveal>
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">02 / How it works</div>
+        <h2 class="text-display-sm">Precision, not guesswork.</h2>
+        <p class="mt-6 text-[var(--color-text-muted)]">
+          Three steps. No app to install. Just a programme that responds to your week — and a coach who actually read your training history before the consult.
+        </p>
+        <a href="/intake" class="btn-primary mt-8">Start your intake</a>
+      </div>
+      <ol class="md:col-span-7 md:col-start-6 flex flex-col">
+        {[
+          {
+            n: "01",
+            t: "You log where you are in your cycle",
+            b: "Bring whatever you already track — a calendar, an app, a paper diary, or nothing at all. We'll cover what to log and how to make it actually useful during your intake.",
+          },
+          {
+            n: "02",
+            t: "We map the load to match",
+            b: "Your programme is built phase by phase — heaviest lifts in your follicular week, technical work peri-ovulation, sustained efforts through luteal, intentional recovery during menstruation. It adapts as your cycle shifts.",
+          },
+          {
+            n: "03",
+            t: "You stop fighting your own week",
+            b: "A bad-feeling Tuesday in week three becomes physiology, not failure. You train hard in the right windows and recover with intent in the wrong ones. The plan moves with you.",
+          },
+        ].map((s) => (
+          <li class="py-10 border-b border-[var(--color-border)] last:border-b-0 flex flex-col md:flex-row gap-8" data-reveal>
+            <div class="text-stats text-[var(--color-primary)] md:w-32 leading-none">{s.n}</div>
+            <div class="flex-1">
+              <h3 class="text-headline">{s.t}</h3>
+              <p class="mt-3 text-body-lg text-[var(--color-text-muted)]">{s.b}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PROGRAMS PREVIEW -->
+  <section class="bg-[var(--color-dark)] text-[var(--color-on-dark)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28" data-reveal>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 pb-8 border-b border-[var(--color-on-dark)]/15">
+        <div>
+          <div class="text-eyebrow text-[var(--color-accent-bright)] mb-4">03 / Coaching</div>
+          <h2 class="text-display-sm text-[var(--color-on-dark)]">Three ways to work together.</h2>
+        </div>
+        <p class="max-w-md opacity-80 text-body-lg">From a one-off plan to fully coached weekly support — pick the engagement that matches how often you train.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--color-on-dark)]/15 border border-[var(--color-on-dark)]/15">
+        {programs.map((p) => (
+          <article
+            class:list={[
+              "p-8 md:p-10 flex flex-col relative",
+              p.featured ? "bg-[var(--color-primary)]" : "bg-[var(--color-dark)]",
+            ]}
+            data-reveal
+          >
+            {p.featured && (
+              <div class="absolute -top-3 left-8 bg-[var(--color-accent-bright)] text-[var(--color-dark)] text-[10px] tracking-[0.18em] uppercase font-semibold px-3 py-1">
+                Most popular
+              </div>
+            )}
+            <h3 class="text-2xl md:text-3xl font-[family-name:var(--font-display)] font-semibold text-[var(--color-on-dark)]">
+              {p.name}
+            </h3>
+            <div class="mt-4 flex items-baseline gap-2">
+              <span class="text-stats text-[var(--color-on-dark)]">{p.price}</span>
+              <span class="text-eyebrow opacity-70">{p.billing}</span>
+            </div>
+            <p class="mt-6 opacity-85 leading-relaxed">{p.blurb}</p>
+            <p class="mt-6 pt-6 border-t border-[var(--color-on-dark)]/20 text-sm opacity-75 flex-grow">
+              <span class="text-eyebrow text-[var(--color-accent-bright)] block mb-2">Best for</span>
+              {p.bestFor}
+            </p>
+            <a
+              href="/intake"
+              class:list={[
+                "mt-8 inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-semibold tracking-[0.12em] uppercase border transition-colors",
+                p.featured
+                  ? "bg-[var(--color-on-dark)] text-[var(--color-primary)] border-[var(--color-on-dark)] hover:bg-transparent hover:text-[var(--color-on-dark)]"
+                  : "border-[var(--color-on-dark)]/50 text-[var(--color-on-dark)] hover:bg-[var(--color-on-dark)] hover:text-[var(--color-primary)]",
+              ]}
+            >
+              Book a free consult <span aria-hidden>→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm opacity-80">
+        <span>All programmes start with a free 30-minute consult and a written intake review.</span>
+        <a href="/programs" class="text-[var(--color-accent-bright)] border-b border-[var(--color-accent-bright)] pb-1 text-eyebrow">Compare programmes →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE BRIEFLY -->
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28 grid grid-cols-1 md:grid-cols-12 gap-12 items-center" data-reveal>
+      <div class="md:col-span-5">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">04 / Evidence</div>
+        <h2 class="text-display-sm">Every recommendation has a citation behind it.</h2>
+        <p class="mt-6 text-body-lg text-[var(--color-text-muted)]">
+          We didn't invent cycle-synced training. We just read the studies that actually included women — and built a coaching practice on what they found. No vibes, no guesswork, no moon mysticism.
+        </p>
+        <a href="/science" class="btn-secondary mt-8">Read the research</a>
+      </div>
+      <div class="md:col-span-7">
+        <figure class="border-l-2 border-[var(--color-accent)] pl-6 md:pl-10 max-w-xl">
+          <blockquote class="text-display-sm">
+            <span class="font-[family-name:var(--font-display)] italic">"Sex differences in training response are large, real, and almost entirely missing from foundational sports-science research."</span>
+          </blockquote>
+          <figcaption class="mt-6 text-eyebrow text-[var(--color-text-muted)]">
+            McNulty et al., 2020 · Sports Medicine systematic review · n = 78 studies
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACH PREVIEW -->
+  <section class="bg-[var(--color-surface-2)]/50 border-y border-[var(--color-border)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28 grid grid-cols-1 md:grid-cols-12 gap-12" data-reveal>
+      <div class="md:col-span-5">
+        <div class="text-eyebrow text-[var(--color-accent)] mb-4">05 / Your coach</div>
+        <h2 class="text-display-sm">Sports-science degree. Strength-coaching cert. A flat refusal to call anything a girl workout.</h2>
+        <a href="/coach" class="btn-secondary mt-8">Meet your coach</a>
+      </div>
+      <div class="md:col-span-7 text-body-lg text-[var(--color-text)] space-y-6">
+        <p>
+          Luna Cycle Coaching started in a London gym where I kept watching strong women apologise for an off week. None of my textbooks were built on female physiology — almost all of the foundational research used male subjects.
+        </p>
+        <p>
+          So I went and read the studies that did include women. The pattern was obvious: the menstrual cycle changes how you adapt, recover, and feel under load, and ignoring it is just bad coaching.
+        </p>
+        <p class="font-semibold text-[var(--color-primary)]">
+          I will never call anything a girl workout. It is just good training, finally written for the body doing it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28" data-reveal>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        <div>
+          <div class="text-eyebrow text-[var(--color-accent)] mb-4">06 / Client outcomes</div>
+          <h2 class="text-display-sm max-w-[20ch]">
+            Women who stopped dreading their luteal week and started PR-ing in their follicular one.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--color-border)] border border-[var(--color-border)]">
+        {testimonials.map((t) => (
+          <figure class="bg-[var(--color-surface)] p-8 md:p-10 flex flex-col" data-reveal>
+            <span aria-hidden class="font-[family-name:var(--font-display)] text-6xl leading-none text-[var(--color-primary)] opacity-20 mb-2">"</span>
+            <blockquote class="text-lg leading-relaxed text-[var(--color-text)] flex-grow">
+              {t.quote}
+            </blockquote>
+            <figcaption class="mt-8 pt-6 border-t border-[var(--color-border)]">
+              <div class="text-eyebrow text-[var(--color-primary)]">{t.name}</div>
+              <div class="mt-2 text-sm text-[var(--color-text-muted)]">{t.detail}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUS: INTERACTIVE PHASE WHEEL -->
+  <section class="bg-[var(--color-surface-2)]/40 border-t border-[var(--color-border)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-28" data-reveal>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 items-end">
+        <div class="md:col-span-7">
+          <div class="text-eyebrow text-[var(--color-accent)] mb-4">07 / Explore the cycle</div>
+          <h2 class="text-display-sm">Click into a phase. See what we'd train.</h2>
+        </div>
+        <p class="md:col-span-5 text-body-lg text-[var(--color-text-muted)]">
+          A working preview of how the programme reads your week — pick a phase to see the training emphasis and a citation behind it.
+        </p>
+      </div>
+      <PhaseWheelInteractive client:visible />
+    </div>
+  </section>
+
+  <!-- CONSULT CTA BAND -->
+  <section class="bg-[var(--color-primary)] text-[var(--color-on-dark)]">
+    <div class="max-w-[var(--container-max)] mx-auto px-5 md:px-16 py-24 text-center" data-reveal>
+      <div class="text-eyebrow text-[var(--color-accent-bright)] mb-6">08 / Consult</div>
+      <h2 class="text-display-sm text-[var(--color-on-dark)] max-w-[24ch] mx-auto">
+        Book a free thirty-minute consult.
+      </h2>
+      <p class="mt-6 text-body-lg max-w-xl mx-auto opacity-85">
+        Bring your training history and your questions. I will have read your intake before we talk and arrived with a starting point, not a sales pitch.
+      </p>
+      <a href="/intake" class="btn-primary mt-10 bg-[var(--color-on-dark)] text-[var(--color-primary)] border-[var(--color-on-dark)] hover:bg-[var(--color-accent-bright)] hover:border-[var(--color-accent-bright)] hover:text-[var(--color-dark)]">
+        Start your intake →
+      </a>
+    </div>
+  </section>
+</Layout>
