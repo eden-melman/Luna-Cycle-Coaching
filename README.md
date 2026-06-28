@@ -62,21 +62,3 @@ See [`SETUP.md`](./SETUP.md) for the one-time Wix dashboard steps (apps to insta
 └── AGENTS.md                 # Guidance for AI coding agents working in this repo
 ```
 
-## Local development
-
-```bash
-npm install
-npx wix env pull            # populate .env.local with WIX_CLIENT_ID (and any other vars)
-npm run dev                 # = `wix dev` — runs Astro + Wix dev proxy together
-```
-
-`npm run dev` prints a `wix-site-host.com` URL; open it (not `localhost`) so cookies and Wix domain auth work correctly.
-
-## Deployment
-
-```bash
-npm run build                                     # = wix build
-npx wix release --comment "what changed"          # uploads bundle and publishes
-```
-
-The release pipeline runs Astro's server build, the `@wix/cloud-provider-fetch-adapter` rewrites the SSR manifest into a self-contained bundle, and `wix release` uploads it to the Wix runtime backing `lunacyclecoaching.com`.
